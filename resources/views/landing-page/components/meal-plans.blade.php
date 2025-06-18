@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="mt-5">
-                        <button data-modal-target="diet-modal" data-modal-toggle="diet-modal" type="button" class="px-10 py-2 cursor-pointer rounded-[30px] bg-[#333333] hover:bg-[#3d3d3d] text-white text-lg">Detail</button>
+                        <button data-modal-target="diet-modal" data-modal-toggle="diet-modal" type="button" class="px-10 py-2 cursor-pointer rounded-[30px] bg-[#333333] hover:bg-[#3d3d3d] text-white text-lg duration-300">Detail</button>
                     </div>
                 </div>
 
@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="mt-5">
-                        <button data-modal-target="protein-modal" data-modal-toggle="protein-modal" type="button" class="px-10 py-2 cursor-pointer rounded-[30px] bg-[#333333] hover:bg-[#3d3d3d] text-white text-lg">Detail</button>
+                        <button data-modal-target="protein-modal" data-modal-toggle="protein-modal" type="button" class="px-10 py-2 cursor-pointer rounded-[30px] bg-[#333333] hover:bg-[#3d3d3d] text-white text-lg duration-300">Detail</button>
                     </div>
                 </div>
 
@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="mt-5">
-                        <button data-modal-target="royal-modal" data-modal-toggle="royal-modal" type="button" class="px-10 py-2 cursor-pointer rounded-[30px] bg-[#333333] hover:bg-[#3d3d3d] text-white text-lg">Detail</button>
+                        <button data-modal-target="royal-modal" data-modal-toggle="royal-modal" type="button" class="px-10 py-2 cursor-pointer rounded-[30px] bg-[#333333] hover:bg-[#3d3d3d] text-white text-lg duration-300">Detail</button>
                     </div>
                 </div>
             </div>

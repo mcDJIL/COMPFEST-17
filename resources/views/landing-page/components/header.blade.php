@@ -1,31 +1,4 @@
-@push('style')
-    <style>
-        /* Custom CSS untuk memastikan animasi bekerja dengan baik */
-        .nav-link.active::after {
-            width: 100% !important;
-        }
-        
-        .nav-link::after {
-            transform-origin: left center;
-        }
-        
-        /* Reset hover effect untuk link aktif */
-        .nav-link.active:hover::after {
-            width: 100% !important;
-        }
-        
-        /* Untuk mobile view - hilangkan animasi dan garis */
-        @media (max-width: 767px) {
-            .nav-link::after {
-                display: none !important;
-            }
-            
-            .nav-link.active::after {
-                display: none !important;
-            }
-        }
-    </style>
-@endpush
+
 
 <nav class="bg-[#FAFAF5] dark:bg-gray-900 fixed w-full z-20 top-0 start-0">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-5 px-4 sm:px-10">
