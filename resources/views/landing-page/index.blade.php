@@ -65,6 +65,8 @@
         @include('landing-page.components.meal-plans')
 
         @include('landing-page.components.testimonials')
+
+        @include('landing-page.components.submit-testimonial')
         
     </div>
 

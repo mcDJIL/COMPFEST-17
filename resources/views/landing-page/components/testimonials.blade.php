@@ -1,10 +1,8 @@
     <div class="w-full pt-20 pb-20 overflow-hidden">
-        <!-- Container untuk konten kiri dengan max-width 1280px -->
         <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-10">
             <div class="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-16">
-                <!-- Konten Kiri - Fixed dalam container -->
                 <div class="flex-shrink-0 lg:w-80 xl:w-96">
-                    <h2 class="text-2xl sm:text-3xl text-green-800 leading-tight">What Our Customers are Saying</h2>
+                    <h2 class="text-3xl text-green-800 leading-tight">What Our Customers are Saying</h2>
                     <p class="text-lg sm:text-xl text-[#333333] mt-4">These are the reasons our customers keep coming back</p>
 
                     <div class="flex justify-between rounded-[20px] bg-[#FAFAF5] mt-8 max-w-[320px] py-6 pr-6 pl-5">
@@ -41,13 +39,9 @@
                     </div>
                 </div>
 
-                <!-- Swiper Container - Melebar ke kanan -->
                 <div class="flex-1 lg:ml-8">
-                    <!-- Slider main container -->
                     <div class="swiper testimonial-swiper mt-6 lg:mt-10 relative">
-                        <!-- Additional required wrapper -->
                         <div class="swiper-wrapper !h-[260px] sm:!h-[280px]">
-                            <!-- Slides -->
                             <div class="swiper-slide bg-[#FAFAF5] rounded-[20px] p-4 sm:p-6 w-72 sm:w-80 lg:w-96 h-52 sm:h-60 relative mr-4 sm:mr-6">
                                 <div class="flex justify-between items-start">
                                     <div class="flex flex-col sm:flex-row sm:gap-6 lg:gap-8 items-start sm:items-center">
@@ -136,8 +130,7 @@
                             </div>
                         </div>
                         
-                        <!-- Pagination -->
-                        <div class="swiper-pagination absolute !w-20 !-bottom-[5px] !-left-4"></div>
+                        <div class="swiper-pagination absolute w-full lg:!w-20 !-bottom-[5px] lg:!-left-4"></div>
                     </div>
                 </div>
             </div>
@@ -147,7 +140,6 @@
     @push('script')
         <script>
             const swiper = new Swiper('.testimonial-swiper', {
-                // Optional parameters
                 direction: 'horizontal',
                 loop: true,
                 slidesPerView: 1.2,
@@ -157,39 +149,32 @@
                     forceToAxis: true,
                     invert: true,
                 },
-                // If we need pagination
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
                 },
 
                 breakpoints: {
-                    // 300px ke atas
                     300: {
                         slidesPerView: 1.1,
                         spaceBetween: 12,
                     },
-                    // 480px ke atas (mobile)
                     480: {
                         slidesPerView: 1.3,
                         spaceBetween: 16,
                     },
-                    // 640px ke atas (tablet kecil)
                     640: {
                         slidesPerView: 1.5,
                         spaceBetween: 20,
                     },
-                    // 768px ke atas (tablet)
                     768: {
                         slidesPerView: 1.8,
                         spaceBetween: 24,
                     },
-                    // 1024px ke atas (desktop kecil)
                     1024: {
                         slidesPerView: 2.2,
                         spaceBetween: 24,
                     },
-                    // 1280px ke atas (desktop)
                     1280: {
                         slidesPerView: 2.5,
                         spaceBetween: 32,
