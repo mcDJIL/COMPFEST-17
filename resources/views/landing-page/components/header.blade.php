@@ -1,4 +1,4 @@
-<nav class="bg-[#FAFAF5] dark:bg-gray-900 fixed w-full z-50 top-0 start-0">
+<nav class="bg-[#FAFAF5] dark:bg-gray-900 fixed w-full z-40 top-0 start-0">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-5 px-4 sm:px-10">
         <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="{{ url('assets/images/logo.png') }}" class="w-36" alt="Sea Catering Logo">

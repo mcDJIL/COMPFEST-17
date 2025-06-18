@@ -96,9 +96,16 @@ export default class HelperApi {
 
     static toIdr(number) {
         if (number == null) {
-            return '0';
+            return '0,00';
         }
-        return number.toString().replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+        const fixedNumber = Number(number).toFixed(2);
+        const parts = fixedNumber.split('.');
+        const integerPart = parts[0];
+        const decimalPart = parts[1];
+
+        const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        return `${formattedInteger},${decimalPart}`;
     }
 
     static getBase64(file, storageKey) {
