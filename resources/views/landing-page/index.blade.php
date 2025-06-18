@@ -67,6 +67,12 @@
         @include('landing-page.components.testimonials')
 
         @include('landing-page.components.submit-testimonial')
+
+        @include('landing-page.components.contact-us')
+
+        @include('landing-page.components.subscribe-now')
+        
+        @include('landing-page.components.footer')
         
     </div>
 
