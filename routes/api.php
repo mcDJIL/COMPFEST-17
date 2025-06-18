@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\RouteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::name('api.')->group(function () {
+    Route::get('/routes', [RouteController::class, 'routes'])->name('routes');
+});
