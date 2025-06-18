@@ -20,29 +20,29 @@
             <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#FAFAF5] md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <!-- Home Link - Active by default -->
                 <li>
-                    <a href="#home" data-target="home" class="nav-link link group relative block py-2 px-3 mt-2 mb-2 md:mb-0 md:mt-0 text-white bg-green-600 rounded-sm md:bg-transparent md:text-green-600 md:p-0 transition-colors duration-300
-                        after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-green-600 after:transition-all after:duration-300 
-                        hover:text-white hover:bg-green-600 md:hover:bg-transparent md:hover:text-green-600">
+                    <a href="/" class="nav-link link group relative block py-2 px-3 mt-2 mb-2 md:mb-0 md:mt-0 text-gray-500 rounded-sm md:p-0 transition-colors duration-300
+                        after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-green-600 after:transition-all after:duration-300 
+                        hover:after:w-full hover:text-white hover:bg-green-600 md:hover:bg-transparent md:hover:text-green-600">
                         Home
                     </a>
                 </li>
                 <!-- Other Links - Default state -->
                 <li>
-                    <a href="#meal-plans" data-target="meal-plans" class="nav-link link group relative block py-2 px-3 mt-2 mb-2 md:mb-0 md:mt-0 text-gray-500 rounded-sm md:p-0 transition-colors duration-300
+                    <a href="/" class="nav-link link group relative block py-2 px-3 mt-2 mb-2 md:mb-0 md:mt-0 text-gray-500 rounded-sm md:p-0 transition-colors duration-300
                         after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-green-600 after:transition-all after:duration-300 
                         hover:after:w-full hover:text-white hover:bg-green-600 md:hover:bg-transparent md:hover:text-green-600">
                         Meal Plans
                     </a>
                 </li>
                 <li>
-                    <a href="/subscription" class="nav-link group relative block py-2 px-3 mt-2 mb-2 md:mb-0 md:mt-0 text-gray-500 rounded-sm md:p-0 transition-colors duration-300
-                        after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-green-600 after:transition-all after:duration-300 
-                        hover:after:w-full hover:text-white hover:bg-green-600 md:hover:bg-transparent md:hover:text-green-600">
+                    <a href="/subscription" class="nav-link link group relative block py-2 px-3 mt-2 mb-2 md:mb-0 md:mt-0 text-white bg-green-600 rounded-sm md:bg-transparent md:text-green-600 md:p-0 transition-colors duration-300
+                        after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-green-600 after:transition-all after:duration-300 
+                        hover:text-white hover:bg-green-600 md:hover:bg-transparent md:hover:text-green-600">
                         Subscription
                     </a>
                 </li>
                 <li>
-                    <a href="#contact-us" data-target="contact-us" class="nav-link link group relative block py-2 px-3 mt-2 mb-2 md:mb-0 md:mt-0 text-gray-500 rounded-sm md:p-0 transition-colors duration-300
+                    <a href="/" class="nav-link link group relative block py-2 px-3 mt-2 mb-2 md:mb-0 md:mt-0 text-gray-500 rounded-sm md:p-0 transition-colors duration-300
                         after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-green-600 after:transition-all after:duration-300 
                         hover:after:w-full hover:text-white hover:bg-green-600 md:hover:bg-transparent md:hover:text-green-600">
                         Contact Us
@@ -87,47 +87,6 @@
             link.classList.add('bg-green-600', 'text-white');
         }
     }
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('data-target');
-            const targetSection = document.getElementById(targetId);
-
-            if (targetSection) {
-                window.scrollTo({
-                    top: targetSection.offsetTop - 100,
-                    behavior: 'smooth'
-                });
-
-                setActiveLink(link);
-
-                if (window.innerWidth < 768) {
-                    navbarMenu.classList.add('hidden');
-                }
-            }
-        });
-    });
-
-    function onScroll() {
-        let scrollPosition = window.scrollY;
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-
-            if (scrollPosition >= sectionTop - 120 && scrollPosition < sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    if (link.getAttribute('data-target') === sectionId) {
-                        setActiveLink(link);
-                    }
-                });
-            }
-        });
-    }
-
-    window.addEventListener('scroll', onScroll);
 
     // Optional: jaga styling tetap konsisten saat resize
     window.addEventListener('resize', () => {

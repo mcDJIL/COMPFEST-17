@@ -19,42 +19,10 @@
 
     {{-- Icons --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-    {{-- Vendors css --}}
-    <link rel="stylesheet" href="{{ url('assets/css/swiper-bundle.min.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/libs/select2/select2.css') }}">
     @stack('vendor-style')
 
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .swiper-pagination-bullet {
-            background-color: #F5F5F5 !important;
-            opacity: 1 !important;
-        }
-        .swiper-pagination-bullet-active {
-            background-color: #1B5E20 !important; /* misal pakai warna Tailwind dark */
-        }
-        .testimonial-swiper .swiper-slide {
-            width: 280px !important;
-            height: 240px !important;
-        }
-        
-        @media (min-width: 640px) {
-            .testimonial-swiper .swiper-slide {
-                width: 320px !important;
-                height: 260px !important;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .testimonial-swiper .swiper-slide {
-                width: 394px !important;
-                height: 260px !important;
-            }
-        }
-
         /* Custom CSS untuk memastikan animasi bekerja dengan baik */
         .nav-link.active::after {
             width: 100% !important;
@@ -85,32 +53,24 @@
 <body>
     <div class="">
         
-        @include('landing-page.components.header')
+        @include('subscription.components.header')
+        
+        @include('subscription.components.subscription')
 
-        @include('landing-page.components.hero')
-
-        @include('landing-page.components.feature')
-
-        @include('landing-page.components.meal-plans')
-
-        @include('landing-page.components.testimonials')
-
-        @include('landing-page.components.submit-testimonial')
-
-        @include('landing-page.components.contact-us')
-
-        @include('landing-page.components.subscribe-now')
-
-        @include('landing-page.components.footer')
+        @include('subscription.components.footer')
         
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script src="{{ url('assets/js/jquery-3.6.1.min.js') }}"></script>
     <script src="{{ url('assets/js/jquery-cookie.min.js') }}"></script>
-    <script src="{{ url('assets/js/swiper-bundle.min.js') }}"></script>
     @stack('vendor-script')
 
+    <script>
+        function getAuthorization() {
+            return "Bearer " + Cookies.get("{{ env('API_TOKEN') }}");
+        }
+    </script>
     @stack('script')
 </body>
 </html>
