@@ -1,4 +1,4 @@
-<div class="w-full pt-20 pb-20 bg-[#f1f1f1]">
+<section id="contact-us" class="w-full pt-20 pb-20 bg-[#f1f1f1]">
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-10">
         <div class="flex flex-wrap justify-between gap-10 xl:gap-30 w-full">
             <div class="xl:w-[540px]">
@@ -28,4 +28,4 @@
             </div>
         </div>
     </div>
-</div>
+</section>

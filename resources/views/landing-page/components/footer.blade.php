@@ -13,16 +13,16 @@
                   <h2 class="mb-6 font-semibold text-[#333333] dark:text-white">Menu</h2>
                   <ul class="text-[#333333] dark:text-gray-400 font-medium">
                       <li class="mb-4">
-                          <a href="" class="hover:underline nav-link">Home</a>
+                          <a href="#home" data-footer="home" class="hover:underline footer-link">Home</a>
                       </li>
                       <li class="mb-4">
-                          <a href="" class="hover:underline nav-link">Meal Plans</a>
+                          <a href="#meal-plans" data-footer="meal-plans" class="hover:underline footer-link">Meal Plans</a>
                       </li>
                       <li class="mb-4">
-                          <a href="" class="hover:underline nav-link">Subscription</a>
+                          <a href="/subscription" class="hover:underline">Subscription</a>
                       </li>
                       <li class="mb-4">
-                          <a href="" class="hover:underline nav-link">Contact Us</a>
+                          <a href="#contact-us" data-footer="contact-us" class="hover:underline footer-link">Contact Us</a>
                       </li>
                   </ul>
               </div>
@@ -30,10 +30,10 @@
                   <h2 class="mb-6 font-semibold text-[#333333] uppercase dark:text-white">Follow us</h2>
                   <ul class="text-[#333333] dark:text-gray-400 font-medium">
                       <li class="mb-4">
-                          <a href="https://github.com/mcDJIL/COMPFEST-17" class="hover:underline">Github</a>
+                          <a target="_blank" href="https://github.com/mcDJIL/COMPFEST-17" class="hover:underline">Github</a>
                       </li>
                       <li class="mb-4">
-                          <a href="https://www.instagram.com/arilbatubaraa" class="hover:underline">Instagram</a>
+                          <a target="_blank" href="https://www.instagram.com/arilbatubaraa" class="hover:underline">Instagram</a>
                       </li>
                       <li class="mb-4">
                           <a href="#" class="hover:underline">Facebook</a>
@@ -95,3 +95,24 @@
       </div>
     </div>
 </footer>
+
+@push('script')
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('.footer-link').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault(); // penting untuk mencegah default behavior
+            const targetId = this.getAttribute('data-footer');
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                window.scrollTo({
+                    top: targetSection.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});
+</script>
+@endpush

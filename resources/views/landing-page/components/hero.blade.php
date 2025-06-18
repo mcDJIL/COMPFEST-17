@@ -1,4 +1,4 @@
-<div class="bg-[#FAFAF5] w-full relative top-[93.97px] mb-20">
+<section id="home" class="bg-[#FAFAF5] w-full relative top-[93.97px] mb-20">
     <div class="max-w-screen-xl w-full flex justify-center mx-auto px-6 sm:px-10 pb-20">
         <div class="flex w-full flex-wrap flex-col-reverse md:flex-row md:justify-between">
             <div class="mt-10 md:mt-7 lg:mt-10 xl:mt-16">
@@ -9,13 +9,13 @@
                 <p class="text-gray-500 sm:w-96 md:w-64 lg:w-80 xl:w-96 mt-10 md:mt-6 lg:mt-8 xl:mt-10 text base md:text-xs lg:text-sm xl:text-base">SEA Catering as a customizable healthy meal service with delivery all across Indonesia.</p>
 
                 <div class="mt-10 md:mt-6 lg:mt-8 xl:mt-10 flex flex-wrap gap-5">
-                    <button type="button" class="cursor-pointer text-white bg-green-800 hover:bg-green-700 transition-colors duration-300 font-medium rounded-3xl px-9 md:px-4 text-sm lg:text-base lg:px-6 xl:px-9 py-3 md:py-2 xl:py-3 text-center">
+                    <button data-target="meal-plans" id="btn-get-meal" type="button" class="cursor-pointer text-white bg-green-800 hover:bg-green-700 transition-colors duration-300 font-medium rounded-3xl px-9 md:px-4 text-sm lg:text-base lg:px-6 xl:px-9 py-3 md:py-2 xl:py-3 text-center">
                         Get your meal
                     </button>
 
-                    <button type="button" class="cursor-pointer text-green-800 border border-green-800 bg-white hover:text-white hover:bg-green-700 transition-colors duration-300 font-medium rounded-3xl px-9 md:px-4 text-sm lg:text-base lg:px-6 xl:px-9 py-3 md:py-2 xl:py-3 text-center">
+                    <a href="/subscription" class="cursor-pointer text-green-800 border border-green-800 bg-white hover:text-white hover:bg-green-700 transition-colors duration-300 font-medium rounded-3xl px-9 md:px-4 text-sm lg:text-base lg:px-6 xl:px-9 py-3 md:py-2 xl:py-3 text-center">
                         Subscribe us
-                    </button>
+                    </a>
                 </div>
 
                 <div class="mt-10 md:mt-6 lg:mt-8 xl:mt-10 flex flex-wrap gap-10 sm:gap-16">
@@ -38,4 +38,22 @@
             </div>
         </div>
     </div>
-</div>
+</section>
+
+@push('script')
+    <script>
+        document.querySelectorAll('#btn-get-meal').forEach(item => {
+        item.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const targetSection = document.getElementById(targetId);
+            
+            if (targetSection) {
+                window.scrollTo({
+                    top: targetSection.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    </script>
+@endpush

@@ -25,6 +25,10 @@
     @stack('vendor-style')
 
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         .swiper-pagination-bullet {
             background-color: #F5F5F5 !important;
             opacity: 1 !important;
@@ -71,7 +75,7 @@
         @include('landing-page.components.contact-us')
 
         @include('landing-page.components.subscribe-now')
-        
+
         @include('landing-page.components.footer')
         
     </div>
