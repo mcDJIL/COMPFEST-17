@@ -56,7 +56,6 @@
                     (xhr, status, err) => {
                         const res = xhr.responseJSON;
                         if (res && !res.status) {
-                            console.error(res);
 
                             if (
                                 res?.message?.email?.[0] ||
@@ -84,8 +83,69 @@
                 );
             });
 
+            $(document).on('click', '.btn-forgot-password', () => {
+                const data = {
+                    email: $("[name=forgot-email]").val(),
+                    password: $("[name=forgot-password]").val(),
+                };
+                HelperApi.setLoading($(".btn-forgot-password"), true);
+
+                const url = "/api/auth/forgot-password";
+
+                HelperApi.apiRequest(
+                    "POST",
+                    url,
+                    data,
+                    (res) => {
+                        HelperApi.showAlert(
+                                    "success",
+                                    res.message,
+                                    $(".forgot-success-message"),
+                                    3000
+                                );
+
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 800);
+
+                        HelperApi.setLoading($(".btn-forgot-password"), false);
+                    },
+                    (xhr, status, err) => {
+                        const res = xhr.responseJSON;
+                        if (res && !res.status) {
+
+                            if (
+                                res?.message?.email?.[0] ||
+                                res?.message?.password?.[0]
+                            ) {
+                                $(".forgot-email-error").text(
+                                    res.message?.email?.[0] ?? ""
+                                );
+                                $(".forgot-password-error").text(
+                                    res.message?.password?.[0] ?? ""
+                                );
+                            } else {
+                                HelperApi.showAlert(
+                                    "error",
+                                    res.message,
+                                    $(".forgot-error-message"),
+                                    3000
+                                );
+                            }
+                        } else {
+                            console.error("Error:", status);
+                        }
+                        HelperApi.setLoading($(".btn-forgot-password"), false);
+                    }
+                );
+            })
+
             $(document).on('click', '#togglePassword', () => {
                 this.togglePassword('password', 'icon');
+            });
+
+            $(document).on('click', '#forgotTogglePassword', () => {
+                this.togglePassword('forgot-password', 'forgot-icon');
             });
         }
 
