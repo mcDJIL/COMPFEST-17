@@ -7,6 +7,8 @@
     <meta name="description" content="Tempat untuk mencari makanan sehat." />
     <meta name="keywords" content="SEA Catering, Healthy Meal, Best Meal">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="cookies___" content="{{ env('API_TOKEN') }}">
+    <meta name="url___" content="{{ route('api.logout') }}">
 
     <title>SEA Catering</title>
     
@@ -63,13 +65,48 @@
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script src="{{ url('assets/js/jquery-3.6.1.min.js') }}"></script>
-    <script src="{{ url('assets/js/jquery-cookie.min.js') }}"></script>
+    <script src="{{ url('assets/js/js.cookie.min.js') }}"></script>
+    <script src="{{ url('assets/js/helper-api.js') }}"></script>
     @stack('vendor-script')
 
     <script>
         function getAuthorization() {
             return "Bearer " + Cookies.get("{{ env('API_TOKEN') }}");
         }
+
+        (function () {
+            setInterval(() => {
+
+                let tokenName = $('meta[name="cookies___"]').attr('content')
+                let cookies = Cookies.get(tokenName);
+                let currentUrl = window.location.href;
+
+                if (cookies) {
+                    Cookies.set(`${tokenName}_extend`, cookies, {
+                        expires: 5 / 1440, // 1 jam
+                        path: '/',
+                        secure: false,
+                        sameSite: 'Lax'
+                    })
+                } else {
+                    let extendedCookies = Cookies.get(`${tokenName}_extend`);
+
+                    if (extendedCookies) {
+                        let urlLogout = $('meta[name="url___"]').attr('content')
+                        apiRequest("POST", urlLogout, [], (res) => {
+                            Cookies.remove(`${tokenName}`)
+                            Cookies.remove(`${tokenName}_extend`)
+                            window.location.href = "{{ route('auth.login') }}"
+                        }, (xhr, status, err) => {
+                            window.location.href = "{{ route('auth.login') }}"
+                        }, {
+                            Authorization: "Bearer "+extendedCookies
+                        })
+                    }
+                }
+
+            }, 10000);
+        })()
     </script>
     @stack('script')
 </body>
