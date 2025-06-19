@@ -39,7 +39,10 @@ class AuthController extends Controller
 
         $token = $user->createToken($request->ip())->plainTextToken;
 
-        $personalAccessToken = PersonalAccessToken::where('token', hash('sha256', $token))->first();
+        $tokenParts = explode('|', $token);
+        $hashedToken = hash('sha256', $tokenParts[1]);
+
+        $personalAccessToken = PersonalAccessToken::where('token', $hashedToken)->first();
 
         if ($personalAccessToken) {
             $personalAccessToken->expires_at = Carbon::now()->addMinutes(config('sanctum.expiration'))->format('Y-m-d H:i:s');
@@ -154,32 +157,5 @@ class AuthController extends Controller
             'message' => 'Password updated successfully.',
             'data' => null
         ], 201);
-    }
-
-    public function getUserByToken($token)
-    {
-        $accessToken = PersonalAccessToken::findToken($token);
-
-        if (!$accessToken) {
-            return response()->json([
-                'message' => 'Token tidak valid atau sudah kadaluarsa.',
-                'data' => null
-            ], 401);
-        }
-
-        if ($accessToken->expires_at && Carbon::parse($accessToken->expires_at)->isPast()) {
-            $accessToken->delete();
-            return response()->json([
-                'message' => 'Token tidak valid atau sudah kadaluarsa.',
-                'data' => null
-            ], 401);
-        }
-
-        $user = $accessToken->tokenable->load();
-
-        return response()->json([
-            'message' => 'User ditemukan.',
-            'data' => $user
-        ]);
     }
 }
