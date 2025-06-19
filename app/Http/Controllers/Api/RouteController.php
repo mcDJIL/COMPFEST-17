@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 class RouteController extends Controller
 {
-    public function routes_old() {
+    public function routes_old()
+    {
         $apiRoutes = collect(Route::getRoutes())->filter(function ($route) {
             return strpos($route->getName(), 'api.') === 0;
         })->mapWithKeys(function ($route) {
@@ -29,16 +30,13 @@ class RouteController extends Controller
         return response()->json($apiRoutes);
     }
 
-    public function routes(Request $request) {
+    public function routes(Request $request)
+    {
         $user = $request->user();
-        $userRoles = $user->map->role->toArray() ?? null;
+        $userRole = $user->role ?? null;
 
-        $apiRoutes = collect(Route::getRoutes())->filter(function ($route) use ($userRoles) {
-            if (strpos($route->getName(), 'api.') !== 0) {
-                return false;
-            }
-
-            if ($route->getName() === 'api.routes') {
+        $apiRoutes = collect(Route::getRoutes())->filter(function ($route) use ($userRole) {
+            if (strpos($route->getName(), 'api.') !== 0 || $route->getName() === 'api.routes') {
                 return false;
             }
 
@@ -51,9 +49,7 @@ class RouteController extends Controller
             foreach ($middlewares as $middleware) {
                 if (strpos($middleware, 'check.role:') === 0) {
                     $allowedRoles = explode(',', str_replace('check.role:', '', $middleware));
-
-                    $inArray = array_intersect($userRoles, $allowedRoles);
-                    if (!$inArray) {
+                    if (!in_array($userRole, $allowedRoles)) {
                         return false;
                     }
                 }
@@ -67,7 +63,6 @@ class RouteController extends Controller
 
             $formattedUrl = url(preg_replace('/\{(\w+)\}/', '{$1}', $uri));
             $formattedName = str_replace(['api.', '.', '-'], ['', '_', '_'], $route->getName());
-
             $method = $route->methods()[0];
 
             $action = $route->getActionName();
@@ -76,25 +71,13 @@ class RouteController extends Controller
             $validatorRules = [];
 
             if (strpos($action, '@') !== false) {
-                list($controller, $function) = explode('@', $action);
+                [$controller, $function] = explode('@', $action);
 
                 if (class_exists($controller) && method_exists($controller, $function)) {
                     $reflector = new \ReflectionMethod($controller, $function);
                     $parameters = $reflector->getParameters();
 
-                    // FormRequest -- Tidak Terpakai
-                    // if (count($parameters) > 0) {
-                    //     $firstParamType = $parameters[0]->getType();
-                    //     if ($firstParamType && class_exists($firstParamType->getName())) {
-                    //         $paramClass = new \ReflectionClass($firstParamType->getName());
-                    //         if ($paramClass->isSubclassOf(\Illuminate\Foundation\Http\FormRequest::class)) {
-                    //             $requestClass = new $firstParamType->getName();
-                    //             $validatorRules = $requestClass->rules();
-                    //         }
-                    //     }
-                    // }
-
-                    // Validator::make
+                    // Coba cari aturan validasi jika tidak pakai FormRequest
                     if (empty($validatorRules)) {
                         $functionCode = file($reflector->getFileName());
                         $functionBody = implode("", array_slice($functionCode, $reflector->getStartLine(), $reflector->getEndLine() - $reflector->getStartLine()));
@@ -119,5 +102,4 @@ class RouteController extends Controller
 
         return response()->json($apiRoutes);
     }
-
 }
