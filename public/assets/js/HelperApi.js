@@ -270,14 +270,10 @@ export default class HelperApi {
         };
 
         const config = types[type] || types.danger;
+        console.log(config);
+        
         const alertHTML = `
-        <div class="helper-alert flex items-center p-4 mb-4 text-sm text-${
-            config.color
-        }-800 border border-${config.color}-300 rounded-lg bg-${
-            config.color
-        }-50 dark:bg-gray-800 dark:text-${config.color}-400 dark:border-${
-            config.color
-        }-800" role="alert">
+        <div class="helper-alert flex items-center p-4 mb-4 text-sm text-${config.color}-800 border border-${config.color}-300 rounded-lg bg-${config.color}-50" role="alert">
             <svg class="shrink-0 inline w-4 h-4 me-3" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                 ${config.icon}
             </svg>
@@ -287,13 +283,16 @@ export default class HelperApi {
         </div>
     `;
 
+        $(target).removeClass('hidden');
         const $target = $(target);
         const $alert = $(alertHTML);
         $target.prepend($alert);
-
+        
         if (timeout > 0) {
             setTimeout(() => {
                 $alert.fadeOut(300, () => $alert.remove());
+
+                $(target).addClass('hidden');
             }, timeout);
         }
     }
