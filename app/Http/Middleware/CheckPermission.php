@@ -22,7 +22,7 @@ class CheckPermission
      */
     public function handle(Request $request, Closure $next, ...$roles)
     {
-        $user = Auth::user();
+        $user = FuncController::get_profile();
 
         if (!$user) {
             return redirect()->route('auth.login');

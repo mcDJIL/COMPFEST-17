@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'check.token' => \App\Http\Middleware\CheckToken::class,
             'check.permission' => \App\Http\Middleware\CheckPermission::class,
+            'check.api.role' => \App\Http\Middleware\CheckRole::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

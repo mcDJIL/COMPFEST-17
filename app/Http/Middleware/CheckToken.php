@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\Api\AuthController;
 use Closure;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -27,9 +26,7 @@ class CheckToken
 
     protected $protectedRoutes = [
         'dashboard.*',
-        'user.*',
-        'partner.*',
-        'print.*',
+        'subscription.*',
     ];
 
     /**
@@ -39,15 +36,14 @@ class CheckToken
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $token = Cookie::get(env('API_TOKEN'));
+        $token = $_COOKIE['_sea_catering_token'] ?? null;
         $routeName = $request->route()->getName();
 
-        $user = app(AuthController::class)->getUserByToken($token)->getData()->data;
-
+        $user = FuncController::get_profile();
         if (empty($token)) {
             if ($this->routeMatches($routeName, $this->protectedRoutes)) {
                 $cookie = new HTTPCookie(
-                    'sc-automatic-redirect',          // Nama cookie
+                    'tulen-automatic-redirect',          // Nama cookie
                     URL::current(),                // Nilai cookie
                     time() + 3600,         // Waktu kedaluwarsa (1 jam)
                     '/',                   // Path cookie
@@ -57,7 +53,7 @@ class CheckToken
                     false,                 // Raw (Tidak diset di cookie jar)
                     'Lax'
                 );
-                return redirect()->route('auth.login')->with('error', 'The session has ended. Please login again.')->withCookie($cookie);
+                return redirect()->route('auth.login')->with('error', 'Sesi telah berakhir. Harap login kembali.')->withCookie($cookie);
             }
             $this->invalidateToken($token);
         } elseif ($this->routeMatches($routeName, $this->listRoutes)) {
@@ -70,6 +66,9 @@ class CheckToken
         if (!$user) {
             $this->invalidateToken($token);
         }
+
+        view()->share('user', $user);
+
         return $next($request);
     }
 
