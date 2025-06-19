@@ -7,7 +7,7 @@
     <meta name="description" content="Tempat untuk mencari makanan sehat." />
     <meta name="keywords" content="SEA Catering, Healthy Meal, Best Meal">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="cookies___" content="{{ env('API_TOKEN') }}">
+    <meta name="cookies___" content="_sea_catering_token">
     <meta name="url___" content="{{ route('api.logout') }}">
 
     <title>SEA Catering</title>
@@ -153,6 +153,7 @@
             }, 10000);
         })()
     </script>
+    <script src="{{ url('assets/js/auth/logout.js') }}"></script>
     @stack('script')
 </body>
 </html>

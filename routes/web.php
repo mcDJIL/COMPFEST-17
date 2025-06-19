@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FuncController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -7,7 +8,7 @@ Route::middleware('check.token')->group(function () {
     Route::prefix('auth')->group(function () {
         // Redirect
         Route::get('/redirect', function () {
-            $user = Auth::user();
+            $user = FuncController::get_profile();
 
             if (!$user) {
                 return redirect()->route('auth.login');

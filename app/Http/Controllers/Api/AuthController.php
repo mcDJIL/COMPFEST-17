@@ -61,24 +61,18 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        try {
-            $accessToken = $request->bearerToken();
-            $token = PersonalAccessToken::findToken($accessToken);
+        $user = $request->user();
 
-            $token->delete();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Logout success.',
-                'data' => null
-            ], 200);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => "Error. $th.",
-                'data' => null
-            ], 500);
+        if ($user) {
+            if ($request->bearerToken()) {
+                $user->currentAccessToken()->delete();
+            }
         }
+
+        return response()->json([
+            'error' => false,
+            'message' => 'Logout success.',
+        ], 200);
     }
 
     public function register(Request $request)

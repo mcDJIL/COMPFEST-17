@@ -108,6 +108,7 @@
             }, 10000);
         })()
     </script>
+    <script src="{{ url('assets/js/auth/logout.js') }}"></script>
     @stack('script')
 </body>
 </html>

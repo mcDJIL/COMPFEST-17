@@ -17,6 +17,7 @@ export default class HelperApi {
         }
 
         const cookieValue = this.getCookie(cookieName);
+        console.log(cookieValue);
         return cookieValue ? `Bearer ${cookieValue}` : "";
     }
 
