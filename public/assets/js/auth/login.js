@@ -45,11 +45,9 @@
                                 "sc-automatic-redirect"
                             );
 
-                            setTimeout(() => {
-                                window.location.href = autoRedirect
-                                    ? autoRedirect
-                                    : "/";
-                            }, 1000);
+                            window.location.href = autoRedirect
+                                ? autoRedirect
+                                : "/";
 
                             Cookies.remove("sc-automatic-redirect");
                         }
