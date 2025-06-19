@@ -15,7 +15,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable, HasApiTokens;
 
     protected $keyType = 'string';
-    
+
     public $incrementing = false;
 
     protected static function boot()
@@ -37,6 +37,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'image',
     ];
 
     /**
