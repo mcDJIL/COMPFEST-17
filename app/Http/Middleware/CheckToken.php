@@ -43,7 +43,7 @@ class CheckToken
         if (empty($token)) {
             if ($this->routeMatches($routeName, $this->protectedRoutes)) {
                 $cookie = new HTTPCookie(
-                    'tulen-automatic-redirect',          // Nama cookie
+                    'sc-automatic-redirect',          // Nama cookie
                     URL::current(),                // Nilai cookie
                     time() + 3600,         // Waktu kedaluwarsa (1 jam)
                     '/',                   // Path cookie

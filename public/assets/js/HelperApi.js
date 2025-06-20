@@ -17,7 +17,6 @@ export default class HelperApi {
         }
 
         const cookieValue = this.getCookie(cookieName);
-        console.log(cookieValue);
         return cookieValue ? `Bearer ${cookieValue}` : "";
     }
 
@@ -189,13 +188,13 @@ export default class HelperApi {
         return pathSegments[index - 1] || null;
     }
 
-    static formatDate(date, country = "id-ID") {
+    static formatDate(date, country = "en-US") {
         try {
             let tanggal = new Date(date);
 
             if (isNaN(tanggal)) return "-";
 
-            let options = { day: "2-digit", month: "long", year: "numeric" };
+            let options = { day: "numeric", month: "long", year: "numeric" };
 
             return tanggal.toLocaleDateString(country, options);
         } catch (error) {
@@ -270,7 +269,6 @@ export default class HelperApi {
         };
 
         const config = types[type] || types.danger;
-        console.log(config);
         
         const alertHTML = `
         <div class="helper-alert flex items-center p-4 mb-4 text-sm text-${config.color}-800 border border-${config.color}-300 rounded-lg bg-${config.color}-50" role="alert">
