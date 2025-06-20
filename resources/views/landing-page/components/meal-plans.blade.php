@@ -289,3 +289,7 @@
         </div>
     </div>
 </div>
+
+@push('script')
+    <script src="{{ url('assets/js/landing-page/meal-plans.js') }}"></script>
+@endpush
