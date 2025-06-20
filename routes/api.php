@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\RouteController;
+use App\Http\Controllers\Api\TestimonialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,8 +14,22 @@ Route::name('api.')->group(function () {
     });
     
     Route::get('/routes', [RouteController::class, 'routes'])->name('routes');
+
+    Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
     
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/auth/logout', [AuthController::class, 'logout'])->name('logout');
+
+        Route::middleware('check.api.role:user,admin')->group(function () {
+            Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
+        });
+
+        Route::middleware('check.api.role:user')->group(function () {
+            
+        });
+
+        Route::middleware('check.api.role:admin')->group(function () {
+            
+        });
     });
 });
