@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('user_id')->nullable();
+            $table->string('name');
             $table->text('review');
             $table->integer('rating');
             $table->timestamps();
-
-            $table->foreign("user_id")->references("id")->on("users")->onDelete("SET NULL");
         });
     }
 
