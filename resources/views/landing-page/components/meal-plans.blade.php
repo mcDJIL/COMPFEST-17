@@ -8,16 +8,16 @@
             <div class="mt-10 flex justify-center md:justify-between flex-wrap gap-10">
                 <div class="w-[350px] rounded-[20px] bg-white p-5">
                     <div class="relative">
-                        <img src="{{ url('assets/images/diet.png') }}" alt="">
+                        <img class="plan-image" src="{{ url('assets/images/diet.png') }}" alt="">
 
                         <div class="absolute -bottom-5 left-2/4 transform -translate-x-2/4 bg-[#81C784] text-white px-10 py-2 rounded-[30px] whitespace-nowrap">
-                            <p>Rp 30.000,00</p>
+                            <p class="plan-price">Rp 30.000,00</p>
                         </div>
                     </div>
 
                     <div class="mt-10">
-                        <h4 class="text-xl font-semibold text-[#333333] mb-2">Diet Plan</h4>
-                        <p class="text-gray-500">Low-calorie meals tailored for weight management. Perfect for those aiming to eat light and stay healthy.</p>
+                        <h4 class="text-xl font-semibold text-[#333333] mb-2 plan-name">Diet Plan</h4>
+                        <p class="text-gray-500 plan-description">Low-calorie meals tailored for weight management. Perfect for those aiming to eat light and stay healthy.</p>
                     </div>
 
                     <div class="mt-5">
@@ -27,39 +27,39 @@
 
                 <div class="w-[350px] rounded-[20px] bg-white p-5">
                     <div class="relative">
-                        <img src="{{ url('assets/images/protein.png') }}" alt="">
+                        <img class="plan-image" src="{{ url('assets/images/royal.png') }}" alt="">
 
-                        <div class="absolute -bottom-5 left-2/4 transform -translate-x-2/4 bg-[#64B5F6] text-white px-10 py-2 rounded-[30px] whitespace-nowrap">
-                            <p>Rp 40.000,00</p>
+                        <div class="absolute -bottom-5 left-2/4 transform -translate-x-2/4 bg-[#FFCC2B] text-white px-10 py-2 rounded-[30px] whitespace-nowrap">
+                            <p class="plan-price">Rp 60.000,00</p>
                         </div>
                     </div>
 
                     <div class="mt-10">
-                        <h4 class="text-xl font-semibold text-[#333333] mb-2">Protein Plan</h4>
-                        <p class="text-gray-500">High-protein meals to support muscle growth and active lifestyles. Ideal for gym-goers and fitness enthusiasts.</p>
+                        <h4 class="text-xl font-semibold text-[#333333] mb-2 plan-name">Royal Plan</h4>
+                        <p class="text-gray-500 plan-description">Premium, balanced meals with exclusive ingredients and full portions. A luxurious choice for your daily nutrition.</p>
                     </div>
 
                     <div class="mt-5">
-                        <button data-modal-target="protein-modal" data-modal-toggle="protein-modal" type="button" class="px-10 py-2 cursor-pointer rounded-[30px] bg-[#333333] hover:bg-[#3d3d3d] text-white text-lg duration-300">Detail</button>
+                        <button data-modal-target="royal-modal" data-modal-toggle="royal-modal" type="button" class="px-10 py-2 cursor-pointer rounded-[30px] bg-[#333333] hover:bg-[#3d3d3d] text-white text-lg duration-300">Detail</button>
                     </div>
                 </div>
 
                 <div class="w-[350px] rounded-[20px] bg-white p-5">
                     <div class="relative">
-                        <img src="{{ url('assets/images/royal.png') }}" alt="">
+                        <img class="plan-image" src="{{ url('assets/images/protein.png') }}" alt="">
 
-                        <div class="absolute -bottom-5 left-2/4 transform -translate-x-2/4 bg-[#FFCC2B] text-white px-10 py-2 rounded-[30px] whitespace-nowrap">
-                            <p>Rp 60.000,00</p>
+                        <div class="absolute -bottom-5 left-2/4 transform -translate-x-2/4 bg-[#64B5F6] text-white px-10 py-2 rounded-[30px] whitespace-nowrap">
+                            <p class="plan-price">Rp 40.000,00</p>
                         </div>
                     </div>
 
                     <div class="mt-10">
-                        <h4 class="text-xl font-semibold text-[#333333] mb-2">Royal Plan</h4>
-                        <p class="text-gray-500">Premium, balanced meals with exclusive ingredients and full portions. A luxurious choice for your daily nutrition.</p>
+                        <h4 class="text-xl font-semibold text-[#333333] mb-2 plan-name">Protein Plan</h4>
+                        <p class="text-gray-500 plan-description">High-protein meals to support muscle growth and active lifestyles. Ideal for gym-goers and fitness enthusiasts.</p>
                     </div>
 
                     <div class="mt-5">
-                        <button data-modal-target="royal-modal" data-modal-toggle="royal-modal" type="button" class="px-10 py-2 cursor-pointer rounded-[30px] bg-[#333333] hover:bg-[#3d3d3d] text-white text-lg duration-300">Detail</button>
+                        <button data-modal-target="protein-modal" data-modal-toggle="protein-modal" type="button" class="px-10 py-2 cursor-pointer rounded-[30px] bg-[#333333] hover:bg-[#3d3d3d] text-white text-lg duration-300">Detail</button>
                     </div>
                 </div>
             </div>
