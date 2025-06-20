@@ -81,6 +81,18 @@ class TestimonialController extends Controller
         ], 200);
     }
 
+    public function getTotalHappyCustomers()
+    {
+        $happyCustomers = Testimonial::where('rating', '>=', 4)
+        ->count();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Total happy customers successfully retrieved.',
+            'data' => $happyCustomers
+        ], 200);
+    }
+
     protected function summaryReview($ratingAverage)
     {
         if ($ratingAverage >= 4.5) {

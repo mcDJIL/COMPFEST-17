@@ -55,20 +55,6 @@
                 item.textContent = data[index].description;
             });
         }
-
-        renderBgColor(plan) {
-            let color = '';
-
-            if (plan === 'Diet Plan') {
-                color = '#81C784'
-            } else if (plan === 'Royal Plan') {
-                color = '#FFCC2B'
-            } else {
-                color = '#64B5F6'
-            }
-
-            return color;
-        }
     }
 
     $(document).ready(function () {

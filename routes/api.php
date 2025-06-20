@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\MealPlansController;
 use App\Http\Controllers\Api\RouteController;
+use App\Http\Controllers\Api\SubscriptionController;
 use App\Http\Controllers\Api\TestimonialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,8 +19,11 @@ Route::name('api.')->group(function () {
 
     Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
     Route::get('/testimonials/summary', [TestimonialController::class, 'getSummaryTestimonial'])->name('testimonials.summary');
-
+    Route::get('/testimonials/happy-customers', [TestimonialController::class, 'getTotalHappyCustomers'])->name('testimonials.happy-customers');
+    
     Route::get('/meal-plans', [MealPlansController::class, 'index'])->name('meal-plans.index');
+
+    Route::get('/subscriptions/total', [SubscriptionController::class, 'getTotalSubscriptions'])->name('subscriptions.total');
     
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/auth/logout', [AuthController::class, 'logout'])->name('logout');

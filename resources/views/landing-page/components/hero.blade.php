@@ -20,12 +20,12 @@
 
                 <div class="mt-10 md:mt-6 lg:mt-8 xl:mt-10 flex flex-wrap gap-10 sm:gap-16">
                     <div class="">
-                        <h2 class="text-green-800 font-bold text-5xl md:text-3xl lg:text-4xl xl:text-5xl mb-1">20+</h2>
+                        <h2 class="text-green-800 font-bold text-5xl md:text-3xl lg:text-4xl xl:text-5xl mb-1 total-happy-customers">...</h2>
                         <p class="text-gray-500 text-base md:text-xs lg:text-base">Happy Customers</p>
                     </div>
 
                     <div class="">
-                        <h2 class="text-green-800 font-bold text-5xl md:text-3xl lg:text-4xl xl:text-5xl mb-1">20+</h2>
+                        <h2 class="text-green-800 font-bold text-5xl md:text-3xl lg:text-4xl xl:text-5xl mb-1 total-subscriptions">...</h2>
                         <p class="text-gray-500 text-base md:text-xs lg:text-base">Subscription</p>
                     </div>
                 </div>
@@ -56,4 +56,6 @@
         });
     });
     </script>
+
+    <script src="{{ url('assets/js/landing-page/hero.js') }}"></script>
 @endpush
