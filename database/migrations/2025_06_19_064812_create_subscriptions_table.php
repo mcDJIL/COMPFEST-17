@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('phone');
             $table->foreignUuid('meal_plan_id')->nullable();
             $table->string('allergies')->nullable();
+            $table->integer('total_price');
             $table->date('start_date');
             $table->date('end_date');
             $table->enum('status', ['active', 'pause', 'cancel', 'end']);

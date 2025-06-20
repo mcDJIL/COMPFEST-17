@@ -21,7 +21,7 @@ class Subscription extends Model
     }
 
     protected $fillable = [
-        'user_id', 'phone', 'meal_plan_id', 'allergies', 'start_date', 'end_date', 'status'
+        'user_id', 'phone', 'meal_plan_id', 'allergies', 'total_price', 'start_date', 'end_date', 'status'
     ];
 
     public function user()
