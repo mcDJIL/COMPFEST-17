@@ -14,18 +14,14 @@
 
                         <div class="ml-4 flex-1">
                             <h5 class="font-bold text-lg sm:text-xl text-green-800">Sea Catering</h5>
-                            <p class="text-gray-500 text-xs">Reviews <span>100</span> • <span>Excellent</span></p>
+                            <p class="text-gray-500 text-xs">Reviews <span class="total-review-badge">...</span> • <span class="summary-review-badge">......</span></p>
 
                             <div class="stars-container flex gap-1.5 items-center mt-1">
-                                <div class="stars flex">
-                                    <i class="fa-solid fa-star text-yellow-300 text-sm"></i>
-                                    <i class="fa-solid fa-star text-yellow-300 text-sm"></i>
-                                    <i class="fa-solid fa-star text-yellow-300 text-sm"></i>
-                                    <i class="fa-solid fa-star text-yellow-300 text-sm"></i>
-                                    <i class="fa-solid fa-star text-yellow-300 text-sm"></i>
+                                <div class="stars flex stars-badge">
+                                    ....
                                 </div>
-                                <div class="rating">
-                                    <p class="text-gray-500 text-xs">5</p>
+                                <div class="">
+                                    <p class="text-gray-500 text-xs rating-badge">..</p>
                                 </div>
                             </div>
 
@@ -41,93 +37,8 @@
 
                 <div class="flex-1 lg:ml-8">
                     <div class="swiper testimonial-swiper mt-6 lg:mt-10 relative">
-                        <div class="swiper-wrapper !h-[260px] sm:!h-[280px]">
-                            <div class="swiper-slide bg-[#FAFAF5] rounded-[20px] p-4 sm:p-6 w-72 sm:w-80 lg:w-96 h-52 sm:h-60 relative mr-4 sm:mr-6">
-                                <div class="flex justify-between items-start">
-                                    <div class="flex flex-col sm:flex-row sm:gap-6 lg:gap-8 items-start sm:items-center">
-                                        <div class="stars-testimoni flex">
-                                            <i class="fa-solid fa-star text-lg sm:text-xl text-yellow-300"></i>
-                                            <i class="fa-solid fa-star text-lg sm:text-xl text-yellow-300"></i>
-                                            <i class="fa-solid fa-star text-lg sm:text-xl text-yellow-300"></i>
-                                            <i class="fa-solid fa-star text-lg sm:text-xl text-yellow-300"></i>
-                                            <i class="fa-solid fa-star text-lg sm:text-xl text-yellow-300"></i>
-                                        </div>
-                                        <div class="mt-1 sm:mt-0">
-                                            <p class="text-xs text-[#333333]">June 17, 2025</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="hidden sm:block">
-                                        <i class="fa-solid fa-star text-3xl lg:text-4xl text-yellow-300"></i>
-                                    </div>
-                                </div>
-
-                                <div class="mt-3 sm:mt-4">
-                                    <p class="text-sm sm:text-base text-[#333333]">I've been using the Diet Plan for 3 weeks and already feel lighter and more energized. The delivery is always on time too!</p>
-                                </div>
-
-                                <div class="absolute bottom-4 sm:bottom-5">
-                                    <p class="font-semibold text-lg sm:text-xl">Nadia</p>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide bg-[#FAFAF5] rounded-[20px] p-4 sm:p-6 w-72 sm:w-80 lg:w-96 h-52 sm:h-60 relative mr-4 sm:mr-6">
-                                <div class="flex justify-between items-start">
-                                    <div class="flex flex-col sm:flex-row sm:gap-6 lg:gap-8 items-start sm:items-center">
-                                        <div class="stars-testimoni flex">
-                                            <i class="fa-solid fa-star text-lg sm:text-xl text-yellow-300"></i>
-                                            <i class="fa-solid fa-star text-lg sm:text-xl text-yellow-300"></i>
-                                            <i class="fa-solid fa-star text-lg sm:text-xl text-yellow-300"></i>
-                                            <i class="fa-solid fa-star text-lg sm:text-xl text-yellow-300"></i>
-                                            <i class="fa-solid fa-star text-lg sm:text-xl text-yellow-300"></i>
-                                        </div>
-                                        <div class="mt-1 sm:mt-0">
-                                            <p class="text-xs text-[#333333]">June 15, 2025</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="hidden sm:block">
-                                        <i class="fa-solid fa-star text-3xl lg:text-4xl text-yellow-300"></i>
-                                    </div>
-                                </div>
-
-                                <div class="mt-3 sm:mt-4">
-                                    <p class="text-sm sm:text-base text-[#333333] leading-relaxed">The quality of food is amazing! Fresh ingredients and perfectly balanced meals. My family loves it and we've been loyal customers for months.</p>
-                                </div>
-
-                                <div class="absolute bottom-4 sm:bottom-5">
-                                    <p class="font-semibold text-lg sm:text-xl">Ahmad</p>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide bg-[#FAFAF5] rounded-[20px] p-4 sm:p-6 w-72 sm:w-80 lg:w-96 h-52 sm:h-60 relative mr-4 sm:mr-6">
-                                <div class="flex justify-between items-start">
-                                    <div class="flex flex-col sm:flex-row sm:gap-6 lg:gap-8 items-start sm:items-center">
-                                        <div class="stars-testimoni flex">
-                                            <i class="fa-solid fa-star text-lg sm:text-xl text-yellow-300"></i>
-                                            <i class="fa-solid fa-star text-lg sm:text-xl text-yellow-300"></i>
-                                            <i class="fa-solid fa-star text-lg sm:text-xl text-yellow-300"></i>
-                                            <i class="fa-solid fa-star text-lg sm:text-xl text-yellow-300"></i>
-                                            <i class="fa-solid fa-star text-lg sm:text-xl text-yellow-300"></i>
-                                        </div>
-                                        <div class="mt-1 sm:mt-0">
-                                            <p class="text-xs text-[#333333]">June 12, 2025</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="hidden sm:block">
-                                        <i class="fa-solid fa-star text-3xl lg:text-4xl text-yellow-300"></i>
-                                    </div>
-                                </div>
-
-                                <div class="mt-3 sm:mt-4">
-                                    <p class="text-sm sm:text-base text-[#333333] leading-relaxed">Perfect for busy professionals like me. The variety of meals keeps it interesting and the portion sizes are just right.</p>
-                                </div>
-
-                                <div class="absolute bottom-4 sm:bottom-5">
-                                    <p class="font-semibold text-lg sm:text-xl">Sarah</p>
-                                </div>
-                            </div>
+                        <div class="swiper-wrapper !h-[260px] sm:!h-[280px] testimonials-wrapper">
+                            
                         </div>
                         
                         <div class="swiper-pagination absolute w-full lg:!w-20 !-bottom-[5px] lg:!-left-4"></div>
@@ -182,4 +93,6 @@
                 }
             });
         </script>
+
+        <script src="{{ url('assets/js/landing-page/testimonials.js') }}"></script>
     @endpush

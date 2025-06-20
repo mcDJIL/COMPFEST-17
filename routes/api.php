@@ -16,6 +16,7 @@ Route::name('api.')->group(function () {
     Route::get('/routes', [RouteController::class, 'routes'])->name('routes');
 
     Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
+    Route::get('/testimonials/summary', [TestimonialController::class, 'getSummaryTestimonial'])->name('testimonials.summary');
     
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/auth/logout', [AuthController::class, 'logout'])->name('logout');

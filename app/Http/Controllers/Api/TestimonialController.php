@@ -60,7 +60,7 @@ class TestimonialController extends Controller
         ], 201);
     }
 
-    public function getSummaryReview()
+    public function getSummaryTestimonial()
     {
         $testimonials = Testimonial::get();
 
