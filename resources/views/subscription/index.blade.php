@@ -94,6 +94,17 @@
                     if (extendedCookies) {
                         let urlLogout = $('meta[name="url___"]').attr('content')
                         apiRequest("POST", urlLogout, [], (res) => {
+                            Cookies.set(
+                                'sc-automatic-redirect',
+                                window.location.href,
+                                {
+                                    expires: 1/24, // 1 jam
+                                    path: '/',
+                                    secure: false,
+                                    sameSite: 'Lax',
+                                }
+                            );
+
                             Cookies.remove(`${tokenName}`)
                             Cookies.remove(`${tokenName}_extend`)
                             window.location.href = "{{ route('auth.login') }}"
