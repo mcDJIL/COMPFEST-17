@@ -21,7 +21,7 @@ class Testimonial extends Model
     }
 
     protected $fillable = [
-        'user_id', 'review', 'rating'
+        'name', 'review', 'rating'
     ];
 
     public function user()
