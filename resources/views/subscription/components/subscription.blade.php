@@ -3,65 +3,89 @@
         <div class="w-full">
             <h2 class="text-green-800 text-3xl text-center mb-10">Subscription Form</h2>
 
-            <div class="grid gap-6 mb-6 md:grid-cols-2 w-full">
-                <div>
-                    <label for="full-name" class="block mb-2 font-medium text-gray-900">Full Name</label>
-                    <input type="text" id="full-name"
-                        class="bg-gray-50 border border-[#333333] text-[#333333] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        placeholder="Enter your full name" required />
+            @php
+                $hasActiveSubscription = $subscriptions->pluck('status')->intersect(['active', 'pause'])->isNotEmpty();
+            @endphp
+            @if ($hasActiveSubscription)
+                <div class="relative col-span-2 p-6 rounded-xl border-l-4 border-green-600 bg-green-50 shadow-md animate-fade-in">
+                    <div class="flex items-start gap-4">
+                        <div class="text-green-600 text-3xl">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-green-800">You're Already Subscribed</h3>
+                            <p class="text-sm text-green-700 mt-1">
+                                You have an active or paused subscription. Please wait for it to end or cancel it before subscribing again.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label for="phone" class="block mb-2 font-medium text-gray-900">Phone
-                        Number</label>
-                    <input type="text" id="phone"
-                        class="bg-gray-50 border border-[#333333] text-[#333333] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        placeholder="Enter your phone number" required />
-                </div>
-                <div>
-                    <label for="plan-selection" class="block mb-2 font-medium text-gray-900">Plan Selection</label>
-                    <select id="plan-selection"
-                        class="bg-gray-50 border border-[#333333] text-[#333333] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        placeholder="Doe" required>
-                        <option selected>Choose your plan</option>
-                        <option value="1">Diet Plan</option>
-                        <option value="2">Protein Plan</option>
-                        <option value="3">Royal Plan</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="meal-type" class="block mb-2 font-medium text-gray-900">Meal Type</label>
-                    <select id="meal-type" required name="meal-types[]" multiple="multiple">
-                        <option value="1">Breakfast</option>
-                        <option value="2">Lunch</option>
-                        <option value="3">Dinner</option>
-                    </select>
-                    <small class="text-[#333333]">You can choose more than one option</small>
-                </div>
-                <div class="col-span-2">
-                    <label for="delivery-days" class="block mb-2 font-medium text-gray-900">Delivery Days</label>
-                    <select id="delivery-days" required name="delivery-days[]" multiple="multiple">
-                        <option value="1">Monday</option>
-                        <option value="2">Tuesday</option>
-                        <option value="3">Wednesday</option>
-                        <option value="4">Thursday</option>
-                        <option value="5">Friday</option>
-                        <option value="6">Saturday</option>
-                        <option value="7">Sunday</option>
-                    </select>
-                    <small class="text-[#333333]">You can choose more than one option</small>
-                </div>
-                <div class="col-span-2">
-                    <label for="allergies" class="block mb-2 font-medium text-gray-900">Allergies</label>
-                    <textarea rows="8" id="allergies"
+            @else
+                <div class="grid gap-6 mb-6 md:grid-cols-2 w-full">
+                    <div class="subscription-error-message hidden col-span-2"></div>
+                    <div class="subscription-success-message hidden col-span-2"></div>
+
+                    <div>
+                        <label for="full-name" class="block mb-2 font-medium text-gray-900">Full Name</label>
+                        <input value="{{ $user->name ?? null }}" type="text" id="full-name"
+                            class="bg-gray-50 border border-[#333333] text-[#333333] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            placeholder="Enter your full name" required />
+                    </div>
+                    <div>
+                        <label for="phone" class="block mb-2 font-medium text-gray-900">Phone
+                            Number</label>
+                        <input type="text" id="phone"
+                            class="bg-gray-50 border border-[#333333] text-[#333333] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            placeholder="Enter your phone number" required />
+                    </div>
+                    <div>
+                        <label for="plan-selection" class="block mb-2 font-medium text-gray-900">Plan Selection</label>
+                        <select id="plan-selection"
+                            class="bg-gray-50 border border-[#333333] text-[#333333] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            placeholder="Doe" required>
+                            <option selected>Choose your plan</option>
+                            <option value="1">Diet Plan</option>
+                            <option value="2">Protein Plan</option>
+                            <option value="3">Royal Plan</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="meal-type" class="block mb-2 font-medium text-gray-900">Meal Type</label>
+                        <select id="meal-type" required name="meal-types[]" multiple="multiple">
+                            <option value="1">Breakfast</option>
+                            <option value="2">Lunch</option>
+                            <option value="3">Dinner</option>
+                        </select>
+                        <small class="text-[#333333]">You can choose more than one option</small>
+                    </div>
+                    <div class="col-span-2">
+                        <label for="delivery-days" class="block mb-2 font-medium text-gray-900">Delivery Days</label>
+                        <select id="delivery-days" required name="delivery-days[]" multiple="multiple">
+                            <option value="1">Monday</option>
+                            <option value="2">Tuesday</option>
+                            <option value="3">Wednesday</option>
+                            <option value="4">Thursday</option>
+                            <option value="5">Friday</option>
+                            <option value="6">Saturday</option>
+                            <option value="7">Sunday</option>
+                        </select>
+                        <small class="text-[#333333]">You can choose more than one option</small>
+                    </div>
+                    <div class="col-span-2">
+                        <label for="allergies" class="block mb-2 font-medium text-gray-900">Allergies</label>
+                        <textarea rows="8" id="allergies"
                         class="bg-gray-50 border border-[#333333] text-[#333333] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         placeholder="Enter when you have allergies with some ingredients"></textarea>
+                        <small class="text-[#333333]">Separate with comma ','</small>
+                    </div>
                 </div>
-            </div>
 
-            <div class="mt-14">
-                <button data-modal-target="price-modal" data-modal-toggle="price-modal" id="btn-subscribe"
-                    class="bg-green-800 text-white text-lg rounded-[25px] px-10 py-2 cursor-pointer hover:bg-green-700 duration-300">Subscribe</button>
-            </div>
+                <div class="mt-12">
+                    <button data-modal-target="price-modal" data-modal-toggle="price-modal" id="btn-subscribe"
+                        class="bg-green-800 text-white text-lg rounded-[25px] px-10 py-2 cursor-pointer hover:bg-green-700 duration-300">Subscribe</button>
+                </div>
+            @endif
+
         </div>
     </div>
 </div>
