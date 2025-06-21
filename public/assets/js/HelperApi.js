@@ -294,4 +294,142 @@ export default class HelperApi {
             }, timeout);
         }
     }
+
+    /**
+     * Menampilkan toast notification
+     * @param {string} type - Tipe toast: 'success', 'danger', 'warning', 'info'
+     * @param {string} message - Pesan yang akan ditampilkan
+     * @param {string} title - Judul toast (opsional)
+     * @param {number} timeout - Durasi tampil dalam ms (default: 5000, 0 = tidak auto hide)
+     * @param {string} position - Posisi toast: 'top-right', 'top-left', 'bottom-right', 'bottom-left' (default: 'top-right')
+     */
+    static showToast(
+        type = "info",
+        message = "",
+        title = "",
+        timeout = 5000,
+        position = "top-right"
+    ) {
+        const toastTypes = {
+            success: {
+                bgColor: "bg-white",
+                iconBg: "bg-green-100",
+                iconColor: "text-green-500",
+                textColor: "text-gray-500",
+                titleColor: "text-gray-900",
+                icon: `<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>`,
+                defaultTitle: "Success"
+            },
+            danger: {
+                bgColor: "bg-white",
+                iconBg: "bg-red-100",
+                iconColor: "text-red-500",
+                textColor: "text-gray-500",
+                titleColor: "text-gray-900",
+                icon: `<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>`,
+                defaultTitle: "Error"
+            },
+            warning: {
+                bgColor: "bg-white",
+                iconBg: "bg-orange-100",
+                iconColor: "text-orange-500",
+                textColor: "text-gray-500",
+                titleColor: "text-gray-900",
+                icon: `<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>`,
+                defaultTitle: "Warning"
+            },
+            info: {
+                bgColor: "bg-white",
+                iconBg: "bg-blue-100",
+                iconColor: "text-blue-500",
+                textColor: "text-gray-500",
+                titleColor: "text-gray-900",
+                icon: `<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>`,
+                defaultTitle: "Info"
+            }
+        };
+
+        // Posisi toast
+        const positions = {
+            'top-right': 'top-4 right-4',
+            'top-left': 'top-4 left-4',
+            'bottom-right': 'bottom-4 right-4',
+            'bottom-left': 'bottom-4 left-4'
+        };
+
+        const config = toastTypes[type] || toastTypes.info;
+        const positionClass = positions[position] || positions['top-right'];
+        const toastTitle = title || config.defaultTitle;
+        const toastId = this.generateRandId(8);
+
+        if (!$('#toast-container').length) {
+            $('body').append('<div id="toast-container" class="fixed z-50 space-y-4"></div>');
+        }
+
+        const toastHTML = `
+            <div id="toast-${toastId}" class="fixed ${positionClass} z-50 toast-item">
+                <div class="flex items-center w-full max-w-xs p-4 ${config.bgColor} rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+                    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 ${config.iconColor} ${config.iconBg} rounded-lg dark:bg-blue-800 dark:text-blue-200">
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            ${config.icon}
+                        </svg>
+                        <span class="sr-only">${toastTitle} icon</span>
+                    </div>
+                    <div class="ml-3 text-sm font-normal">
+                        <div class="text-sm font-semibold ${config.titleColor} dark:text-white">${toastTitle}</div>
+                        <div class="text-sm ${config.textColor} dark:text-gray-400">${message}</div>
+                    </div>
+                    <button type="button" class="ml-auto -mx-1.5 -my-1.5 ${config.bgColor} text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-${toastId}" aria-label="Close">
+                        <span class="sr-only">Close</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        $('body').append(toastHTML);
+        const $toast = $(`#toast-${toastId}`);
+
+        $toast.hide().fadeIn(300);
+
+        $toast.find('button[data-dismiss-target]').on('click', function() {
+            $toast.fadeOut(300, function() {
+                $(this).remove();
+            });
+        });
+
+        if (timeout > 0) {
+            setTimeout(() => {
+                $toast.fadeOut(300, function() {
+                    $(this).remove();
+                });
+            }, timeout);
+        }
+
+        return toastId;
+    }
+
+    /**
+     * Menutup toast berdasarkan ID
+     * @param {string} toastId
+     */
+    static closeToast(toastId) {
+        const $toast = $(`#toast-${toastId}`);
+        if ($toast.length) {
+            $toast.fadeOut(300, function() {
+                $(this).remove();
+            });
+        }
+    }
+
+    /**
+     * Menutup semua toast yang sedang aktif
+     */
+    static closeAllToasts() {
+        $('.toast-item').fadeOut(300, function() {
+            $(this).remove();
+        });
+    }
 }
