@@ -45,9 +45,15 @@
                                 "sc-automatic-redirect"
                             );
 
-                            window.location.href = autoRedirect
-                                ? autoRedirect
-                                : "/";
+                            if (res.data.user.role === 'admin') {
+                                window.location.href = autoRedirect
+                                    ? autoRedirect
+                                    : "/dashboard/admin";
+                            } else {
+                                window.location.href = autoRedirect
+                                    ? autoRedirect
+                                    : "/";
+                            }
 
                             Cookies.remove("sc-automatic-redirect");
                         }
