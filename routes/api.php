@@ -38,6 +38,10 @@ Route::name('api.')->group(function () {
         
         Route::middleware('check.api.role:user')->group(function () {
             Route::post('/subscriptions', [SubscriptionController::class, 'store'])->name('subscriptions.store');
+            Route::get('/subscriptions/active', [SubscriptionController::class, 'getActiveSubscription'])->name('subscriptions.active');
+            Route::put('/subscriptions/{id}/pause', [SubscriptionController::class, 'pauseSubscription'])->name('subscriptions.pause');
+            Route::put('/subscriptions/{id}/continue', [SubscriptionController::class, 'continueSubscription'])->name('subscriptions.continue');
+            Route::put('/subscriptions/{id}/cancel', [SubscriptionController::class, 'cancelSubscription'])->name('subscriptions.cancel');
         });
 
         Route::middleware('check.api.role:admin')->group(function () {
