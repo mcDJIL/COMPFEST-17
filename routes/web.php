@@ -29,4 +29,24 @@ Route::middleware('check.token')->group(function () {
             return view('subscription.index');
         })->name('subscription.index');
     });
+
+    Route::middleware('check.permission:user')->group(function () {
+        Route::get('/dashboard/user', function () {
+            return view('dashboard.user.index');
+        })->name('dashboard.user.index');
+
+        Route::get('/dashboard/user/profile', function () {
+            return view('dashboard.user.profile');
+        })->name('dashboard.user.profile');
+    });
+
+    Route::middleware('check.permission:admin')->group(function () {
+        Route::get('/dashboard/admin', function () {
+            return view('dashboard.admin.index');
+        })->name('dashboard.admin.index');
+
+        Route::get('/dashboard/admin/profile', function () {
+            return view('dashboard.admin.profile');
+        })->name('dashboard.admin.profile');
+    });
 });
