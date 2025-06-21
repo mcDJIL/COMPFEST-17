@@ -21,7 +21,7 @@ class Subscription extends Model
     }
 
     protected $fillable = [
-        'user_id', 'phone', 'meal_plan_id', 'allergies', 'total_price', 'start_date', 'end_date', 'status'
+        'user_id', 'phone', 'meal_plan_id', 'allergies', 'total_price', 'start_date', 'end_date', 'status', 'pause_start', 'pause_end'
     ];
 
     public function user()
@@ -31,16 +31,16 @@ class Subscription extends Model
 
     public function mealPlan()
     {
-        return $this->belongsTo(User::class, 'meal_plan_id');
+        return $this->belongsTo(MealPlan::class, 'meal_plan_id');
     }
 
     public function mealTypes()
     {
-        return $this->belongsToMany(SubscriptionMealType::class, 'subscription_meal_types');
+        return $this->belongsToMany(MealType::class, 'subscription_meal_types', 'subscription_id', 'meal_type_id');
     }
 
     public function deliveryDays()
     {
-        return $this->belongsToMany(SubscriptionDeliveryDay::class, 'subscription_delivery_days');
+        return $this->belongsToMany(DeliveryDay::class, 'subscription_delivery_days');
     }
 }
