@@ -66,11 +66,12 @@ class TestimonialController extends Controller
 
         $totalReview = $testimonials->count();
         $ratingAverage = $testimonials->average('rating');
-        $summaryReview = $this->summaryReview($ratingAverage);
+        $formattedRatingAverage = number_format($ratingAverage, 2);
+        $summaryReview = $this->summaryReview($formattedRatingAverage);
 
         $data = [
             'total_review' => $totalReview,
-            'rating_average' => $ratingAverage,
+            'rating_average' => $formattedRatingAverage,
             'summary_review' => $summaryReview,
         ];
 

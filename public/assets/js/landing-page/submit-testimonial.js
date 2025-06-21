@@ -30,7 +30,7 @@
         }
 
         storeTestimonial(data) {
-            const url = ROUTES.testimonials_index;
+            const url = ROUTES.testimonials_store;
 
             HelperApi.apiRequest(
                 "POST",

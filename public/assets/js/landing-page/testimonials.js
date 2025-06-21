@@ -17,44 +17,56 @@
         }
 
         getTestimonials() {
-            const url = '/api/testimonials';
+            const url = "/api/testimonials";
 
-            HelperApi.apiRequest('GET', url, {}, (res) => {
-                const data = res.data;
+            HelperApi.apiRequest(
+                "GET",
+                url,
+                {},
+                (res) => {
+                    const data = res.data;
 
-                this.loadTestimonials(data);
-            }, (xhr, status, err) => {
-                const res = xhr.responseJSON;
+                    this.loadTestimonials(data);
+                },
+                (xhr, status, err) => {
+                    const res = xhr.responseJSON;
 
-                if (res && !res.status) {
-                    console.error(res.message);
-                } else {
-                    console.error("Error: ", status);
+                    if (res && !res.status) {
+                        console.error(res.message);
+                    } else {
+                        console.error("Error: ", status);
+                    }
                 }
-            });
+            );
         }
 
         getSummaryReview() {
-            const url = '/api/testimonials/summary';
+            const url = "/api/testimonials/summary";
 
-            HelperApi.apiRequest('GET', url, {}, (res) => {
-                const data = res.data;
+            HelperApi.apiRequest(
+                "GET",
+                url,
+                {},
+                (res) => {
+                    const data = res.data;
 
-                this.loadSeaCateringBadge(data);
-            }, (xhr, status, err) => {
-                const res = xhr.responseJSON;
+                    this.loadSeaCateringBadge(data);
+                },
+                (xhr, status, err) => {
+                    const res = xhr.responseJSON;
 
-                if (res && !res.status) {
-                    console.error(res.message);
-                } else {
-                    console.error("Error: ", status);
+                    if (res && !res.status) {
+                        console.error(res.message);
+                    } else {
+                        console.error("Error: ", status);
+                    }
                 }
-            })
+            );
         }
 
         loadTestimonials(data) {
-            const testimonialsWrapper = $('.testimonials-wrapper');
-            let testimonialItem = '';
+            const testimonialsWrapper = $(".testimonials-wrapper");
+            let testimonialItem = "";
 
             data.forEach((item) => {
                 testimonialItem += `
@@ -65,7 +77,9 @@
                                             ${this.renderStars(item.rating)}
                                         </div>
                                         <div class="mt-1 sm:mt-0">
-                                            <p class="text-xs text-[#333333]">${HelperApi.formatDate(item.created_at)}</p>
+                                            <p class="text-xs text-[#333333]">${HelperApi.formatDate(
+                                                item.created_at
+                                            )}</p>
                                         </div>
                                     </div>
                                     
@@ -75,30 +89,42 @@
                                 </div>
 
                                 <div class="mt-3 sm:mt-4">
-                                    <p class="text-sm sm:text-base text-[#333333]">${item.review}</p>
+                                    <p class="text-sm sm:text-base text-[#333333]">${
+                                        item.review
+                                    }</p>
                                 </div>
 
                                 <div class="absolute bottom-4 sm:bottom-5">
-                                    <p class="font-semibold text-lg sm:text-xl">${item.name}</p>
+                                    <p class="font-semibold text-lg sm:text-xl">${
+                                        item.name
+                                    }</p>
                                 </div>
                             </div>
-                `
+                `;
             });
 
             testimonialsWrapper.append(testimonialItem);
         }
 
         loadSeaCateringBadge(data) {
-            $('.total-review-badge').text(data.total_review);
-            $('.summary-review-badge').text(data.summary_review);
-            $('.rating-badge').text(data.rating_average);
-            $('.stars-badge').html(this.renderStars(data.rating_average));
+            $(".total-review-badge").text(data.total_review);
+            $(".summary-review-badge").text(data.summary_review);
+            $(".rating-badge").text(data.rating_average);
+            $(".stars-badge").html(this.renderStars(data.rating_average));
         }
 
         renderStars(amount) {
-            let stars = '';
-            const fullStars = Math.floor(amount);
-            const hasHalfStar = amount % 1 >= 0.25 && amount % 1 <= 0.75;
+            let stars = "";
+            let fullStars = Math.floor(amount);
+            let decimal = amount - fullStars;
+            let hasHalfStar = false;
+
+            if (decimal >= 0.75) {
+                fullStars += 1;
+            } else if (decimal >= 0.25) {
+                hasHalfStar = true;
+            }
+
             const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
             for (let i = 0; i < fullStars; i++) {
