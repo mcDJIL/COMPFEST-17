@@ -68,7 +68,7 @@ class CheckToken
         }
 
         view()->share('user', $user);
-        view()->share('subscriptions', $user->subscriptions);
+        view()->share('subscriptions', $user?->subscriptions ?? null);
 
         return $next($request);
     }
