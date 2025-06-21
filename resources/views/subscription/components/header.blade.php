@@ -23,9 +23,9 @@
                     <ul class="py-2" aria-labelledby="user-menu-button">
                         <li>
                             @if ($user->role === 'admin')
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                                <a href="{{ route('dashboard.admin.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
                             @else
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                                <a href="{{ route('dashboard.user.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
                             @endif
                         </li>
                         <li>
