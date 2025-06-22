@@ -267,7 +267,7 @@
                     <div class="flex items-start gap-3 sm:justify-end">
                         <div class="relative w-fit">
                             <input
-                                class="datepicker h-10 w-full rounded-lg border border-gray-200 bg-white py-2.5 pl-[34px] pr-4 text-sm font-medium text-gray-700 shadow-xs focus:outline-hidden focus:ring-0 focus-visible:outline-hidden xl:max-w-fit xl:pl-11"
+                                class="datepicker-new-subs h-10 w-full rounded-lg border border-gray-200 bg-white py-2.5 pl-[34px] pr-4 text-sm font-medium text-gray-700 shadow-xs focus:outline-hidden focus:ring-0 focus-visible:outline-hidden xl:max-w-fit xl:pl-11"
                                 placeholder="Select dates" data-class="flatpickr-right" readonly="readonly" />
                             <div class="absolute inset-0 right-auto flex items-center pointer-events-none left-4">
                                 <svg class="fill-gray-700 dark:fill-gray-400" width="20" height="20" viewBox="0 0 20 20"
@@ -282,85 +282,11 @@
                 </div>
 
                 <div class="relative text-center py-5">
-                    <h2 class="text-6xl font-semibold mb-2">100</h2>
+                    <h2 class="text-6xl font-semibold mb-2 new-subscription-total">0</h2>
                 </div>
 
-                <div class="border-gray-200 space-y-2.5 border-t pt-6 dark:border-gray-800">
-                    <div>
-                        <p class="mb-1 text-sm text-gray-500">
-                            Diet Plan
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <div>
-                                    <p class="text-base font-semibold text-gray-800">
-                                        100
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="flex w-full max-w-[140px] items-center gap-3">
-                                <div class="relative block h-2 w-full max-w-[100px] rounded-sm bg-gray-200">
-                                    <div
-                                        class="absolute left-0 top-0 flex h-full w-[85%] items-center justify-center rounded-sm bg-[#465fff] text-xs font-medium text-white">
-                                    </div>
-                                </div>
-                                <p class="text-sm font-medium text-gray-700">
-                                    85%
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <p class="mb-1 text-sm text-gray-500">Protein Plan</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <div>
-                                    <p class="text-base font-semibold text-gray-800">
-                                        20
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="flex w-full max-w-[140px] items-center gap-3">
-                                <div
-                                    class="relative block h-2 w-full max-w-[100px] rounded-sm bg-gray-200 dark:bg-gray-800">
-                                    <div
-                                        class="absolute left-0 top-0 flex h-full w-[55%] items-center justify-center rounded-sm bg-[#465fff] text-xs font-medium text-white">
-                                    </div>
-                                </div>
-                                <p class="text-sm font-medium text-gray-700">
-                                    55%
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <p class="mb-1 text-sm text-gray-500">Royal Plan</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <div>
-                                    <p class="text-base font-semibold text-gray-800">
-                                        200
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="flex w-full max-w-[140px] items-center gap-3">
-                                <div
-                                    class="relative block h-2 w-full max-w-[100px] rounded-sm bg-gray-200 dark:bg-gray-800">
-                                    <div
-                                        class="absolute left-0 top-0 flex h-full w-[55%] items-center justify-center rounded-sm bg-[#465fff] text-xs font-medium text-white">
-                                    </div>
-                                </div>
-                                <p class="text-sm font-medium text-gray-700">
-                                    55%
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="border-gray-200 space-y-2.5 border-t pt-6 new-subscription-list">
+                    
                 </div>
             </div>
         </div>
