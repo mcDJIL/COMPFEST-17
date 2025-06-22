@@ -40,6 +40,32 @@ class SubscriptionController extends Controller
         ], 200);
     }
 
+    public function restartedSubscriptions(Request $request)
+    {
+        $startDate = $request->query('start_date');
+        $endDate = $request->query('end_date');
+
+        // Ambil user yang pernah cancel
+        $usersWithCancelled = Subscription::where('status', 'cancelled')->pluck('user_id');
+
+        $query = Subscription::with(['user:id,name', 'mealPlan:id,name'])
+            ->whereIn('user_id', $usersWithCancelled)
+            ->where('status', 'active');
+
+        // Jika user kirim filter tanggal, apply filter
+        if ($startDate && $endDate) {
+            $query->whereBetween('created_at', [$startDate, $endDate]);
+        }
+
+        $subscriptions = $query->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Get restarted subscriptions successfully.',
+            'data' => $subscriptions
+        ], 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
