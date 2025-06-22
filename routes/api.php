@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DashboardAdminController;
 use App\Http\Controllers\Api\DeliveryDayController;
 use App\Http\Controllers\Api\MealPlansController;
 use App\Http\Controllers\Api\MealTypeController;
@@ -43,9 +44,11 @@ Route::name('api.')->group(function () {
             Route::put('/subscriptions/{id}/continue', [SubscriptionController::class, 'continueSubscription'])->name('subscriptions.continue');
             Route::put('/subscriptions/{id}/cancel', [SubscriptionController::class, 'cancelSubscription'])->name('subscriptions.cancel');
         });
-
+        
         Route::middleware('check.api.role:admin')->group(function () {
-            
+            Route::get('/dashboard/subscriptions/total-revenue', [DashboardAdminController::class, 'totalRevenue'])->name('dashboard.subscriptions.total-revenue');
+            Route::get('/dashboard/subscriptions/active-subs-revenue', [DashboardAdminController::class, 'activeSubscriptionsRevenue'])->name('dashboard.subscriptions.active-subs-revenue');
+            Route::get('/dashboard/subscriptions/active-subscriptions', [DashboardAdminController::class, 'activeSubscriptions'])->name('dashboard.subscriptions.active-subscriptions');
         });
     });
 });

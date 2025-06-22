@@ -25,6 +25,7 @@
     {{-- Icons --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
     @stack('vendor-style')
 
     @stack('style')
@@ -35,13 +36,15 @@
 
     @include('layout.dashboard.sidebar')
 
-    <div class="p-4 sm:ml-64">
+    <div class="p-4 sm:ml-64 bg-gray-50">
         <div class="mt-20">
             @yield('content')
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.46.0/dist/apexcharts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
     <script src="{{ url('assets/js/jquery-3.6.1.min.js') }}"></script>
     <script src="{{ url('assets/js/js.cookie.min.js') }}"></script>
     <script src="{{ url('assets/js/helper-api.js') }}"></script>
