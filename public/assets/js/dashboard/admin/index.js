@@ -17,10 +17,13 @@
             this.loadMonthlyRecurringData();
             this.loadSubscriptionsGrowth();
             this.loadSubscriptionsStatus();
+            this.loadNewSubscriptions();
 
             this.renderChartSubscriptions();
             this.renderPieChart();
+
             this.renderFlatpickr();
+            this.renderFlatpickrNewSubs();
         }
 
         loadCardData() {
@@ -158,6 +161,45 @@
                     $section.find(".percentage").text(`${percent}%`);
                     $section.find(".count").text(`${count} Subscriptions`);
                 });
+            });
+        }
+
+        loadNewSubscriptions(startDate = null, endDate = null) {
+            const url = ROUTES.dashboard_subscriptions_new_subscriptions;
+            const params = {};
+
+            if (startDate && endDate) {
+                params.start_date = startDate;
+                params.end_date = endDate;
+            }
+
+            HelperApi.apiRequest("GET", url, params, (res) => {
+                if (res.status) {
+                    const data = res.data;
+
+                    $(".new-subscription-total").text(data.total_first_time_users);
+                    $(".new-subscription-list").empty();
+
+                    data.plans.forEach(plan => {
+                        const html = `
+                            <div>
+                                <p class="mb-1 text-sm text-gray-500">${plan.plan}</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <p class="text-base font-semibold text-gray-800">${plan.count}</p>
+                                    </div>
+                                    <div class="flex w-full max-w-[140px] items-center gap-3">
+                                        <div class="relative block h-2 w-full max-w-[100px] rounded-sm bg-gray-200">
+                                            <div class="absolute left-0 top-0 h-full rounded-sm bg-[#465fff]" style="width: ${plan.percentage}%"></div>
+                                        </div>
+                                        <p class="text-sm font-medium text-gray-700">${plan.percentage}%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        $(".new-subscription-list").append(html);
+                    });
+                }
             });
         }
 
@@ -319,15 +361,22 @@
             }
         }
 
-        renderPieChart(data) {
+        renderPieChart(data = []) {
+            if (!Array.isArray(data) || data.length === 0) {
+                console.warn("Pie chart data is invalid or empty.");
+                return;
+            }
+
             const series = data.map(item => item.count);
-            const labels = data.map(item => item.status.charAt(0).toUpperCase() + item.status.slice(1));
+            const labels = data.map(item =>
+                item.status.charAt(0).toUpperCase() + item.status.slice(1)
+            );
             const total = series.reduce((sum, val) => sum + val, 0).toLocaleString();
 
-            const chartThirteenOptions = {
-                series: series,
+            const options = {
+                series,
+                labels,
                 colors: ["#3641f5", "#7592ff", "#dde9ff"],
-                labels: labels,
                 chart: {
                     fontFamily: "Outfit, sans-serif",
                     type: "donut",
@@ -397,11 +446,19 @@
             };
 
             const chartSelector = document.querySelector("#chartThirteen");
+
             if (chartSelector) {
-                // Hapus chart lama jika ada
+                // Destroy chart instance if it already exists (optional but safer for hot-reload)
+                if (chartSelector._chartInstance) {
+                    chartSelector._chartInstance.destroy();
+                }
+
                 chartSelector.innerHTML = "";
-                const chartThirteen = new ApexCharts(chartSelector, chartThirteenOptions);
-                chartThirteen.render();
+                const chart = new ApexCharts(chartSelector, options);
+                chart.render();
+
+                // Optional: save chart instance to destroy later
+                chartSelector._chartInstance = chart;
             }
         }
 
@@ -424,6 +481,24 @@
                         this.loadMonthlyRecurringData(startDate, endDate);
                     }
                 },
+            });
+        }
+
+        renderFlatpickrNewSubs() {
+            flatpickr(".datepicker-new-subs", {
+                mode: "range",
+                dateFormat: "Y-m-d",
+                onChange: (selectedDates) => {
+                    let startDate = null;
+                    let endDate = null;
+
+                    if (selectedDates.length === 2) {
+                        startDate = selectedDates[0].toISOString().split("T")[0];
+                        endDate = selectedDates[1].toISOString().split("T")[0];
+                    }
+
+                    this.loadNewSubscriptions(startDate, endDate);
+                }
             });
         }
     }
