@@ -121,7 +121,7 @@
                     <div class="flex justify-between">
                         <div>
                             <h3 class="text-lg font-semibold text-gray-800">
-                                Subscription Growth
+                                Subscriptions Growth
                             </h3>
                             <p class="mt-1 text-sm text-gray-500">
                                 Overall number of active subscriptions.
@@ -130,8 +130,8 @@
                     </div>
                     <div class="relative sm:max-h-[195px]">
                         <div id="chartTwo" class="h-full"></div>
-                        <span
-                            class="absolute left-1/2 top-[95%] -translate-x-1/2 -translate-y-[85%] rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-600">+10%</span>
+                        <span class="absolute left-1/2 top-[95%] -translate-x-1/2 -translate-y-[85%] rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-600">+10%</span>
+                        <span class="absolute left-1/2 bottom-[-20%] -translate-x-1/2 -translate-y-[85%] text-xs font-medium text-gray-500">From last month</span>
                     </div>
                     <p class="mx-auto mt-[28px] w-full max-w-[380px] text-center text-sm text-gray-500 sm:text-base">
                         You earn $3287 today, it's higher than last month. Keep up your good work!
@@ -141,7 +141,7 @@
                 <div class="flex items-center justify-center gap-5 px-6 py-3.5 sm:gap-8 sm:py-5 mt-3">
                     <div>
                         <p class="mb-1 text-center text-xs text-gray-500 sm:text-sm">
-                            Total Revenue
+                            Total Subscriptions
                         </p>
                         <p class="flex items-center justify-center gap-1 text-base font-semibold text-gray-800 sm:text-lg">
                             $20K
