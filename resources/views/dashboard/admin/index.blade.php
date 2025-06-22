@@ -7,8 +7,8 @@
         <div class="col-span-12">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 xl:grid-cols-3">
                 <div class="rounded-2xl border border-gray-200 bg-white p-5 h-full">
-                    <h4 class="text-3xl font-bold text-gray-800">
-                        $120,369
+                    <h4 id="total-revenue" class="text-3xl font-bold text-gray-800">
+                        Rp0
                     </h4>
 
                     <div class="mt-4 flex items-end justify-between sm:mt-5">
@@ -19,9 +19,9 @@
                         </div>
 
                         <div class="flex items-center gap-1">
-                            <span
+                            <span id="total-revenue-growth"
                                 class="flex items-center gap-1 rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-600">
-                                +20%
+                                +0%
                             </span>
 
                             <span class="text-xs text-gray-500">
@@ -31,8 +31,8 @@
                     </div>
                 </div>
                 <div class="rounded-2xl border border-gray-200 bg-white p-5 h-full">
-                    <h4 class="text-3xl font-bold text-gray-800">
-                        $120,369
+                    <h4 id="active-sub-revenue" class="text-3xl font-bold text-gray-800">
+                        Rp0
                     </h4>
 
                     <div class="mt-4 flex items-end justify-between sm:mt-5">
@@ -43,9 +43,9 @@
                         </div>
 
                         <div class="flex items-center gap-1">
-                            <span
+                            <span id="active-sub-growth"
                                 class="flex items-center gap-1 rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-600">
-                                +20%
+                                +0%
                             </span>
 
                             <span class="text-xs text-gray-500">
@@ -55,8 +55,8 @@
                     </div>
                 </div>
                 <div class="rounded-2xl border border-gray-200 bg-white p-5 h-full">
-                    <h4 class="text-3xl font-bold text-gray-800">
-                        100
+                    <h4 id="active-subscriptions" class="text-3xl font-bold text-gray-800">
+                        0
                     </h4>
 
                     <div class="mt-4 flex items-end justify-between sm:mt-5">
@@ -67,9 +67,9 @@
                         </div>
 
                         <div class="flex items-center gap-1">
-                            <span
+                            <span id="active-subscriptions-growth"
                                 class="flex items-center gap-1 rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-600">
-                                +20%
+                                +0%
                             </span>
 
                             <span class="text-xs text-gray-500">
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="max-w-full overflow-x-auto custom-scrollbar">
+                <div class="max-w-full overflow-x-auto overflow-y-hidden custom-scrollbar">
                     <div id="chartThree" class="-ml-4 min-w-[700px] pl-2 xl:min-w-full"></div>
                 </div>
             </div>

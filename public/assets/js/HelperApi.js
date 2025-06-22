@@ -76,8 +76,15 @@ export default class HelperApi {
             method = "POST"; // Ubah metode ke `POST` agar dapat mengirim FormData
         }
 
+        let requestUrl = url;
+
+        if (method === "GET" && Object.keys(data).length > 0) {
+            const queryString = new URLSearchParams(data).toString();
+            requestUrl += `?${queryString}`;
+        }
+
         $.ajax({
-            url: url,
+            url: requestUrl,
             type: method,
             headers: headers,
             data: method === "GET" ? null : formData,

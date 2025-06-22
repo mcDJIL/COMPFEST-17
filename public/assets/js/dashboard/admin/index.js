@@ -1,46 +1,114 @@
 (async () => {
+    const [ApiRoutes, HelperApi] = await Promise.all([
+        import("../../ApiRoutes.js").then((m) => m.default),
+        import("../../HelperApi.js").then((m) => m.default),
+    ]);
+
+    const ROUTES = ApiRoutes.routes;
+
     class Index {
         constructor() {
+            this.chartRevenueInstance = null;
             this.init();
         }
 
         init() {
-            this.renderChartRevenue();
+            this.loadMonthlyRecurringData();
             this.renderChartSubscriptions();
             this.renderPieChart();
             this.renderFlatpickr();
+
+            this.loadCardData();
         }
 
-        renderChartRevenue() {
-            const chartThreeOptions = {
+        loadCardData() {
+            const totalRevenueUrl =
+                ROUTES.dashboard_subscriptions_total_revenue;
+            const activeRevenueUrl =
+                ROUTES.dashboard_subscriptions_active_subs_revenue;
+            const activeSubsUrl =
+                ROUTES.dashboard_subscriptions_active_subscriptions;
+
+            // Total Revenue
+            HelperApi.apiRequest("GET", totalRevenueUrl, {}, (res) => {
+                const revenue = res.data.total_revenue || 0;
+                const growth = res.data.growth || 0;
+
+                $("#total-revenue").text(`Rp${HelperApi.toIdr(revenue)}`);
+                $("#total-revenue-growth")
+                    .text(`${growth > 0 ? "+" : ""}${growth.toFixed(2)}%`)
+                    .toggleClass("text-green-600 bg-green-50", growth >= 0)
+                    .toggleClass("text-red-600 bg-red-50", growth < 0);
+            });
+
+            // Active Subscriptions Revenue
+            HelperApi.apiRequest("GET", activeRevenueUrl, {}, (res) => {
+                const revenue = res.data.total_revenue || 0;
+                const growth = res.data.growth || 0;
+
+                $("#active-sub-revenue").text(`Rp${HelperApi.toIdr(revenue)}`);
+                $("#active-sub-growth")
+                    .text(`${growth > 0 ? "+" : ""}${growth.toFixed(2)}%`)
+                    .toggleClass("text-green-600 bg-green-50", growth >= 0)
+                    .toggleClass("text-red-600 bg-red-50", growth < 0);
+            });
+
+            // Active Subscriptions Count
+            HelperApi.apiRequest("GET", activeSubsUrl, {}, (res) => {
+                const count = res.data.total_active_subscriptions || 0;
+                const growth = res.data.growth || 0;
+
+                $("#active-subscriptions").text(count);
+                $("#active-subscriptions-growth")
+                    .text(`${growth > 0 ? "+" : ""}${growth.toFixed(2)}%`)
+                    .toggleClass("text-green-600 bg-green-50", growth >= 0)
+                    .toggleClass("text-red-600 bg-red-50", growth < 0);
+            });
+        }
+
+        loadMonthlyRecurringData(startDate = null, endDate = null) {
+            const url = ROUTES.dashboard_subscriptions_monthly_recurring;
+            const params = {};
+
+            if (startDate && endDate) {
+                params.start_date = startDate;
+                params.end_date = endDate;
+            }
+
+            HelperApi.apiRequest("GET", url, params, (res) => {
+                const rawData = res.data || [];
+                const chartData = this.formatChartRevenueData(rawData);
+                this.renderRevenueChart(chartData);
+            });
+        }
+
+        formatChartRevenueData(data) {
+            const labels = data.map((item) => {
+                const [year, month] = item.month.split("-");
+                return new Date(year, month - 1).toLocaleString("default", {
+                    month: "short",
+                });
+            });
+
+            const revenues = data.map((item) => item.revenue);
+
+            return { labels, revenues };
+        }
+
+        renderRevenueChart({ labels, revenues }) {
+            const chartOptions = {
                 series: [
                     {
-                        name: "Sales",
-                        data: [
-                            180, 190, 170, 160, 175, 165, 170, 205, 230, 210,
-                            240, 235,
-                        ],
-                    },
-                    {
                         name: "Revenue",
-                        data: [
-                            40, 30, 50, 40, 55, 40, 70, 100, 110, 120, 150, 140,
-                        ],
+                        data: revenues,
                     },
                 ],
-                legend: {
-                    show: false,
-                    position: "top",
-                    horizontalAlign: "left",
-                },
-                colors: ["#465FFF", "#9CB9FF"],
+                colors: ["#465FFF"],
                 chart: {
                     fontFamily: "Outfit, sans-serif",
                     height: 310,
                     type: "area",
-                    toolbar: {
-                        show: false,
-                    },
+                    toolbar: { show: false },
                 },
                 fill: {
                     gradient: {
@@ -50,79 +118,48 @@
                     },
                 },
                 stroke: {
-                    curve: "straight",
-                    width: ["2", "2"],
+                    curve: "smooth",
+                    width: 2,
                 },
-
                 markers: {
-                    size: 0,
-                },
-                labels: {
-                    show: false,
-                    position: "top",
+                    size: 4,
+                    colors: ["#465FFF"],
                 },
                 grid: {
                     xaxis: {
-                        lines: {
-                            show: false,
-                        },
+                        lines: { show: false },
                     },
                     yaxis: {
-                        lines: {
-                            show: true,
-                        },
+                        lines: { show: true },
                     },
                 },
-                dataLabels: {
-                    enabled: false,
-                },
+                dataLabels: { enabled: false },
                 tooltip: {
-                    x: {
-                        format: "dd MMM yyyy",
+                    y: {
+                        formatter: (val) => `Rp${HelperApi.toIdr(val)}`,
                     },
                 },
                 xaxis: {
                     type: "category",
-                    categories: [
-                        "Jan",
-                        "Feb",
-                        "Mar",
-                        "Apr",
-                        "May",
-                        "Jun",
-                        "Jul",
-                        "Aug",
-                        "Sep",
-                        "Oct",
-                        "Nov",
-                        "Dec",
-                    ],
-                    axisBorder: {
-                        show: false,
-                    },
-                    axisTicks: {
-                        show: false,
-                    },
-                    tooltip: false,
+                    categories: labels,
+                    axisBorder: { show: false },
+                    axisTicks: { show: false },
                 },
                 yaxis: {
-                    title: {
-                        style: {
-                            fontSize: "0px",
-                        },
+                    labels: {
+                        formatter: (val) => `Rp${HelperApi.toIdr(val)}`,
                     },
                 },
             };
 
-            const chartSelector = document.querySelectorAll("#chartThree");
+            const chartSelector = document.querySelector("#chartThree");
 
-            if (chartSelector.length) {
-                const chartThree = new ApexCharts(
-                    document.querySelector("#chartThree"),
-                    chartThreeOptions
-                );
-                chartThree.render();
+            if (this.chartRevenueInstance) {
+                this.chartRevenueInstance.destroy();
             }
+
+            this.chartRevenueInstance = new ApexCharts(chartSelector, chartOptions);
+            this.chartRevenueInstance.render();
         }
 
         renderChartSubscriptions() {
@@ -296,11 +333,24 @@
         }
 
         renderFlatpickr() {
-            const datePicker = $(".datepicker");
-
-            flatpickr(datePicker, {
+            flatpickr(".datepicker", {
                 mode: "range",
-                dateFormat: "M d, Y",
+                dateFormat: "Y-m-d",
+                onChange: (selectedDates) => {
+                    if (selectedDates.length === 2) {
+                        const formatDate = (date) => {
+                            const year = date.getFullYear();
+                            const month = String(date.getMonth() + 1).padStart(2, "0");
+                            const day = String(date.getDate()).padStart(2, "0");
+                            return `${year}-${month}-${day}`;
+                        };
+
+                        const startDate = formatDate(selectedDates[0]);
+                        const endDate = formatDate(selectedDates[1]);
+
+                        this.loadMonthlyRecurringData(startDate, endDate);
+                    }
+                },
             });
         }
     }

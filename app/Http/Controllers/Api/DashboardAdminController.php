@@ -26,7 +26,7 @@ class DashboardAdminController extends Controller
         if ($totalRevenueLastMonth != 0) {
             $growth = ($totalRevenueThisMonth - $totalRevenueLastMonth) / $totalRevenueLastMonth * 100;
         } else {
-            $growth = 0;
+            $growth = 100;
         }
 
         $data = [
@@ -59,7 +59,7 @@ class DashboardAdminController extends Controller
         if ($totalRevenueLastMonth != 0) {
             $growth = ($totalRevenueThisMonth - $totalRevenueLastMonth) / $totalRevenueLastMonth * 100;
         } else {
-            $growth = 0;
+            $growth = 100;
         }
 
         $data = [
@@ -94,7 +94,7 @@ class DashboardAdminController extends Controller
         if ($totalActiveSubsLastMonth != 0) {
             $growth = ($totalActiveSubsThisMonth - $totalActiveSubsLastMonth) / $totalActiveSubsLastMonth * 100;
         } else {
-            $growth = 0;
+            $growth = 100;
         }
 
         $data = [
@@ -138,7 +138,7 @@ class DashboardAdminController extends Controller
 
         $subscriptionGrowth = $totalSubscriptions > 0
             ? ($activeSubscriptions / $totalSubscriptions) * 100
-            : 0;
+            : 100;
 
         $thisMonth = Carbon::now();
         $lastMonth = Carbon::now()->subMonth();
@@ -156,7 +156,7 @@ class DashboardAdminController extends Controller
         if ($totalActiveSubsLastMonth != 0) {
             $monthlyGrowth = ($totalActiveSubsThisMonth - $totalActiveSubsLastMonth) / $totalActiveSubsLastMonth * 100;
         } else {
-            $monthlyGrowth = 0;
+            $monthlyGrowth = 100;
         }
 
         $monthlyDifference = $totalActiveSubsThisMonth - $totalActiveSubsLastMonth;
@@ -182,7 +182,7 @@ class DashboardAdminController extends Controller
         if ($totalYesterdayActiveSubs != 0) {
             $dailyGrowth = ($totalTodayActiveSubs - $totalYesterdayActiveSubs) / $totalYesterdayActiveSubs * 100;
         } else {
-            $dailyGrowth = 0;
+            $dailyGrowth = 100;
         }
 
         $data = [
@@ -237,10 +237,8 @@ class DashboardAdminController extends Controller
         $startDate = Carbon::parse($request->query('start_date', now()->startOfYear()));
         $endDate = Carbon::parse($request->query('end_date', now()->endOfYear()));
 
-        // Ambil user_id yang pertama kali subscription aktif dalam rentang tanggal
         $firstTimeUserIds = $this->getFirstTimeUserIds($startDate, $endDate);
 
-        // Ambil subscriptions mereka (hanya yang aktif & di rentang waktu)
         $firstSubscriptions = $this->getFirstSubscriptions($firstTimeUserIds, $startDate, $endDate);
 
         $totalUsers = $firstTimeUserIds->count();
