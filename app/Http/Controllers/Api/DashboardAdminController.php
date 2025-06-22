@@ -258,6 +258,32 @@ class DashboardAdminController extends Controller
         ], 200);
     }
 
+    public function latestSubscriptions()
+    {
+        $latestSubscriptions = Subscription::with(['user:id,name', 'mealPlan:id,name'])
+            ->where('status', 'active')
+            ->orderBy('created_at', 'desc')
+            ->take(10)
+            ->get();
+
+        $formattedSubscriptions = $latestSubscriptions->map(function ($subscription) {
+            return [
+                'price' => $subscription->total_price,
+                'start_date' => $subscription->start_date,
+                'end_date' => $subscription->end_date,
+                'status' => $subscription->status,
+                'user_name' => $subscription->user->name ?? null,
+                'meal_plan_name' => $subscription->mealPlan->name ?? null,
+            ];
+        });
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Get latest subscriptions successfully.',
+            'data' => $formattedSubscriptions
+        ], 200);
+    }
+
     /**
      * Get user_ids who subscribe for the first time in the given range
      */
