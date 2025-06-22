@@ -12,6 +12,13 @@
                </a>
             </li>
             <li>
+               <a href="{{ route('dashboard.admin.subscriptions') }}" class="{{ Route::currentRouteName() === 'dashboard.admin.subscriptions' ? 'bg-gray-100 text-gray-900' : '' }} mb-1 hover:bg-gray-50 group-hover:text-gray-900 flex items-center p-2 text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700 group">
+                  <i class="fa-solid fa-wallet w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 dark:group-hover:text-white"></i>
+
+                  <span class="ms-3">Subscriptions</span>
+               </a>
+            </li>
+            <li>
                <a href="{{ route('dashboard.admin.profile') }}" class="{{ Route::currentRouteName() === 'dashboard.admin.profile' ? 'bg-gray-100 text-gray-900' : '' }} mb-1 hover:bg-gray-50 group-hover:text-gray-900 flex items-center p-2 text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700 group">
                   <i class="fa-solid fa-user w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 dark:group-hover:text-white"></i>
 

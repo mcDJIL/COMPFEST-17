@@ -45,6 +45,10 @@ Route::middleware('check.token')->group(function () {
             return view('dashboard.admin.index');
         })->name('dashboard.admin.index');
 
+        Route::get('/dashboard/admin/subscriptions', function () {
+            return view('dashboard.admin.subscriptions');
+        })->name('dashboard.admin.subscriptions');
+        
         Route::get('/dashboard/admin/profile', function () {
             return view('dashboard.admin.profile');
         })->name('dashboard.admin.profile');
