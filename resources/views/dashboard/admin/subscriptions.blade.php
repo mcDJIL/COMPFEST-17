@@ -16,7 +16,7 @@
                         </li>
                         <li class="me-2" role="presentation">
                             <button
-                                class="cursor-pointer inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300"
+                                class="btn-reactivations cursor-pointer inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300"
                                 id="dashboard-tab" data-tabs-target="#reactivations" type="button" role="tab"
                                 aria-controls="reactivations" aria-selected="false">Reactivations</button>
                         </li>
@@ -98,13 +98,13 @@
                         <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:px-6">
                             <div>
                                 <h3 class="text-lg font-semibold text-gray-800">
-                                    Reactivationss
+                                    Reactivations
                                 </h3>
                             </div>
                             <div class="">
                                 <div class="relative w-full sm:w-fit">
                                     <input
-                                        class="datepicker-subscriptions h-10 w-full rounded-lg border border-gray-200 bg-white py-2.5 pl-[34px] pr-4 text-sm font-medium text-gray-700 shadow-xs focus:outline-hidden focus:ring-0 focus-visible:outline-hidden xl:max-w-fit xl:pl-11"
+                                        class="datepicker-reactivations h-10 w-full rounded-lg border border-gray-200 bg-white py-2.5 pl-[34px] pr-4 text-sm font-medium text-gray-700 shadow-xs focus:outline-hidden focus:ring-0 focus-visible:outline-hidden xl:max-w-fit xl:pl-11"
                                         placeholder="Select dates" data-class="flatpickr-right" readonly="readonly" />
                                     <div class="absolute inset-0 right-auto flex items-center pointer-events-none left-4">
                                         <svg class="fill-gray-700 dark:fill-gray-400" width="20" height="20" viewBox="0 0 20 20"
@@ -157,7 +157,7 @@
                                         </div>
                                     </th>
                                 </thead>
-                                <tbody class="divide-y divide-gray-100" id="latest-subscriptions-body">
+                                <tbody class="divide-y divide-gray-100" id="reactivations-subscriptions-body">
 
                                 </tbody>
                             </table>
