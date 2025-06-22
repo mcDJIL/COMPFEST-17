@@ -282,85 +282,11 @@
                 </div>
 
                 <div class="relative text-center py-5">
-                    <h2 class="text-6xl font-semibold mb-2">100</h2>
+                    <h2 class="text-6xl font-semibold mb-2 .new-subscription-total">0</h2>
                 </div>
 
-                <div class="border-gray-200 space-y-2.5 border-t pt-6 dark:border-gray-800">
-                    <div>
-                        <p class="mb-1 text-sm text-gray-500">
-                            Diet Plan
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <div>
-                                    <p class="text-base font-semibold text-gray-800">
-                                        100
-                                    </p>
-                                </div>
-                            </div>
+                <div class="border-gray-200 space-y-2.5 border-t pt-6 new-subscription-list">
 
-                            <div class="flex w-full max-w-[140px] items-center gap-3">
-                                <div class="relative block h-2 w-full max-w-[100px] rounded-sm bg-gray-200">
-                                    <div
-                                        class="absolute left-0 top-0 flex h-full w-[85%] items-center justify-center rounded-sm bg-[#465fff] text-xs font-medium text-white">
-                                    </div>
-                                </div>
-                                <p class="text-sm font-medium text-gray-700">
-                                    85%
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <p class="mb-1 text-sm text-gray-500">Protein Plan</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <div>
-                                    <p class="text-base font-semibold text-gray-800">
-                                        20
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="flex w-full max-w-[140px] items-center gap-3">
-                                <div
-                                    class="relative block h-2 w-full max-w-[100px] rounded-sm bg-gray-200 dark:bg-gray-800">
-                                    <div
-                                        class="absolute left-0 top-0 flex h-full w-[55%] items-center justify-center rounded-sm bg-[#465fff] text-xs font-medium text-white">
-                                    </div>
-                                </div>
-                                <p class="text-sm font-medium text-gray-700">
-                                    55%
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <p class="mb-1 text-sm text-gray-500">Royal Plan</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <div>
-                                    <p class="text-base font-semibold text-gray-800">
-                                        200
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="flex w-full max-w-[140px] items-center gap-3">
-                                <div
-                                    class="relative block h-2 w-full max-w-[100px] rounded-sm bg-gray-200 dark:bg-gray-800">
-                                    <div
-                                        class="absolute left-0 top-0 flex h-full w-[55%] items-center justify-center rounded-sm bg-[#465fff] text-xs font-medium text-white">
-                                    </div>
-                                </div>
-                                <p class="text-sm font-medium text-gray-700">
-                                    55%
-                                </p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -414,63 +340,8 @@
                                 </div>
                             </th>
                         </thead>
-                        <tbody class="divide-y divide-gray-100">
-                            <tr>
-                                <td class="py-3 pr-5 whitespace-nowrap sm:pr-5">
-                                    <div class="col-span-3 flex items-center">
-                                        <div>
-                                            <span class="text-sm block font-medium text-gray-700">
-                                                1
-                                            </span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="py-3 pr-5 whitespace-nowrap sm:pr-5">
-                                    <div class="col-span-3 flex items-center">
-                                        <div>
-                                            <span class="text-sm block font-medium text-gray-700">
-                                                Bought PYPL
-                                            </span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-5 py-3 whitespace-nowrap sm:px-6">
-                                    <div class="flex items-center">
-                                        <p class="text-sm text-gray-700">
-                                            Nov 23, 01:00 PM
-                                        </p>
-                                    </div>
-                                </td>
-                                <td class="px-5 py-3 whitespace-nowrap sm:px-6">
-                                    <div class="flex items-center">
-                                        <p class="text-sm text-gray-700">
-                                            $2,567.88
-                                        </p>
-                                    </div>
-                                </td>
-                                <td class="px-5 py-3 whitespace-nowrap sm:px-6">
-                                    <div class="flex items-center">
-                                        <p class="text-sm text-gray-700">
-                                            Finance
-                                        </p>
-                                    </div>
-                                </td>
-                                <td class="px-5 py-3 whitespace-nowrap sm:px-6">
-                                    <div class="flex items-center">
-                                        <p class="text-sm text-gray-700">
-                                            Finance
-                                        </p>
-                                    </div>
-                                </td>
-                                <td class="px-5 py-3 whitespace-nowrap sm:px-6">
-                                    <div class="flex items-center">
-                                        <p
-                                            class="bg-green-50 text-xs text-green-600 rounded-full px-2 py-0.5 font-medium">
-                                            Success
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tbody class="divide-y divide-gray-100" id="latest-subscriptions-body">
+                            
                         </tbody>
                     </table>
                 </div>

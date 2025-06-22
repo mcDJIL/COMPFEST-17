@@ -18,6 +18,7 @@
             this.loadSubscriptionsGrowth();
             this.loadSubscriptionsStatus();
             this.loadNewSubscriptions();
+            this.loadLatestSubscriptions();
 
             this.renderChartSubscriptions();
             this.renderPieChart();
@@ -199,6 +200,63 @@
                         `;
                         $(".new-subscription-list").append(html);
                     });
+                }
+            });
+        }
+
+        loadLatestSubscriptions() {
+            const url = ROUTES.dashboard_subscriptions_latest_subscriptions;
+
+            HelperApi.apiRequest("GET", url, {}, function(res) {
+                const $tbody = $("#latest-subscriptions-body");
+                $tbody.empty();
+
+                if (res.status && res.data.length > 0) {
+                    res.data.forEach((item, index) => {
+                        const statusBadgeClass = item.status === "active"
+                            ? "bg-green-50 text-green-600"
+                            : item.status === "cancel"
+                            ? "bg-red-50 text-red-600"
+                            : "bg-yellow-50 text-yellow-600";
+
+                        const row = `
+                            <tr>
+                                <td class="py-3 pr-5 whitespace-nowrap sm:pr-5">
+                                    <span class="text-sm font-medium text-gray-700">${index + 1}</span>
+                                </td>
+                                <td class="py-3 pr-5 whitespace-nowrap sm:pr-5">
+                                    <span class="text-sm font-medium text-gray-700">${item.user_name ?? '-'}</span>
+                                </td>
+                                <td class="px-5 py-3 whitespace-nowrap sm:px-6">
+                                    <p class="text-sm text-gray-700">${item.meal_plan_name ?? '-'}</p>
+                                </td>
+                                <td class="px-5 py-3 whitespace-nowrap sm:px-6">
+                                    <p class="text-sm text-gray-700">Rp ${Number(item.price).toLocaleString("id-ID")}</p>
+                                </td>
+                                <td class="px-5 py-3 whitespace-nowrap sm:px-6">
+                                    <p class="text-sm text-gray-700">${HelperApi.formatDate(item.start_date)}</p>
+                                </td>
+                                <td class="px-5 py-3 whitespace-nowrap sm:px-6">
+                                    <p class="text-sm text-gray-700">${HelperApi.formatDate(item.end_date)}</p>
+                                </td>
+                                <td class="px-5 py-3 whitespace-nowrap sm:px-6">
+                                    <p class="text-xs w-fit font-medium px-2 py-0.5 rounded-full ${statusBadgeClass}">
+                                        ${HelperApi.capitalize(item.status)}
+                                    </p>
+                                </td>
+                            </tr>
+                        `;
+                        $tbody.append(row);
+                    });
+                } else {
+                    const emptyRow = `
+                        <tr>
+                            <td colspan="7" class="text-center py-6 text-sm text-gray-500">
+                                No subscriptions found.
+                            </td>
+                        </tr>
+                    `;
+                    $tbody.append(emptyRow);
                 }
             });
         }
