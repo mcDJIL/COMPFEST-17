@@ -234,11 +234,10 @@ class DashboardAdminController extends Controller
 
     public function newSubscriptions(Request $request)
     {
-        $startDate = Carbon::parse($request->query('start_date', now()->startOfYear()));
-        $endDate = Carbon::parse($request->query('end_date', now()->endOfYear()));
+        $startDate = $request->query('start_date') ? Carbon::parse($request->query('start_date')) : null;
+        $endDate = $request->query('end_date') ? Carbon::parse($request->query('end_date')) : null;
 
         $firstTimeUserIds = $this->getFirstTimeUserIds($startDate, $endDate);
-
         $firstSubscriptions = $this->getFirstSubscriptions($firstTimeUserIds, $startDate, $endDate);
 
         $totalUsers = $firstTimeUserIds->count();
@@ -283,27 +282,35 @@ class DashboardAdminController extends Controller
     }
 
     /**
-     * Get user_ids who subscribe for the first time in the given range
+     * Get user_ids who subscribe for the first time in the given range (or all time if null)
      */
-    private function getFirstTimeUserIds($startDate, $endDate)
+    private function getFirstTimeUserIds($startDate = null, $endDate = null)
     {
-        return Subscription::select('user_id')
+        $query = Subscription::select('user_id')
             ->where('status', 'active')
-            ->groupBy('user_id')
-            ->havingRaw('MIN(start_date) BETWEEN ? AND ?', [$startDate, $endDate])
-            ->pluck('user_id');
+            ->groupBy('user_id');
+
+        if ($startDate && $endDate) {
+            $query->havingRaw('MIN(start_date) BETWEEN ? AND ?', [$startDate, $endDate]);
+        }
+
+        return $query->pluck('user_id');
     }
 
     /**
-     * Get subscriptions of first-time users in date range
+     * Get subscriptions of first-time users (filtered by date if provided)
      */
-    private function getFirstSubscriptions($userIds, $startDate, $endDate)
+    private function getFirstSubscriptions($userIds, $startDate = null, $endDate = null)
     {
-        return Subscription::with('mealPlan')
+        $query = Subscription::with('mealPlan')
             ->whereIn('user_id', $userIds)
-            ->where('status', 'active')
-            ->whereBetween('start_date', [$startDate, $endDate])
-            ->get();
+            ->where('status', 'active');
+
+        if ($startDate && $endDate) {
+            $query->whereBetween('start_date', [$startDate, $endDate]);
+        }
+
+        return $query->get();
     }
 
     /**
