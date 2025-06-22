@@ -269,6 +269,13 @@
             if (!data.phone.trim()) {
                 errorMessages.push('Phone number is required');
                 isValid = false;
+            } else {
+                // Validasi nomor telepon: harus angka, diawali dengan 08, dan panjang 10-13 digit
+                const phonePattern = /^08[0-9]{8,11}$/;
+                if (!phonePattern.test(data.phone.trim())) {
+                    errorMessages.push('Phone number format is invalid (must start with 08 and be 10–13 digits)');
+                    isValid = false;
+                }
             }
 
             if (!data.planSelection) {

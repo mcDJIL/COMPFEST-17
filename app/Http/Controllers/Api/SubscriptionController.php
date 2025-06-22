@@ -46,7 +46,7 @@ class SubscriptionController extends Controller
         $endDate = $request->query('end_date');
 
         // Ambil user yang pernah cancel
-        $usersWithCancelled = Subscription::where('status', 'cancelled')->pluck('user_id');
+        $usersWithCancelled = Subscription::where('status', 'cancel')->pluck('user_id');
 
         $query = Subscription::with(['user:id,name', 'mealPlan:id,name'])
             ->whereIn('user_id', $usersWithCancelled)
@@ -73,7 +73,7 @@ class SubscriptionController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|regex:/^08[0-9]{8,11}$/',
             'plan_selection' => 'required|exists:meal_plans,name|in:Diet Plan,Protein Plan,Royal Plan',
             'meal_types' => 'required|array',
             'meal_types.*.' => 'exists:meal_types,name',
@@ -81,6 +81,8 @@ class SubscriptionController extends Controller
             'delivery_days.*.' => 'exists:delivery_days,name',
             'allergies' => 'nullable',
             'total_price' => 'required|integer'
+        ], [
+            'phone.regex' => 'Format nomor telepon tidak valid. Harus diawali dengan 08 dan 10–13 digit angka.',
         ]);
 
         if ($validator->fails()) {
