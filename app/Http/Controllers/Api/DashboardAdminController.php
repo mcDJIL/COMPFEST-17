@@ -223,9 +223,13 @@ class DashboardAdminController extends Controller
         });
 
         return response()->json([
-            'total' => $totalSubscriptions,
-            'data' => $data,
-        ]);
+            'status' => true,
+            'message' => 'Get subscriptions growth successfully.',
+            'data' => [
+                'total' => $totalSubscriptions,
+                'chart' => $data,
+            ],
+        ], 200);
     }
 
     private function calculatePercentage(int $count, int $total): float
