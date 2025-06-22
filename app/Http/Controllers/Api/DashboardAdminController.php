@@ -206,6 +206,33 @@ class DashboardAdminController extends Controller
         ], 200);
     }
 
+    public function subscriptionsStatus()
+    {
+        $totalSubscriptions = Subscription::count();
+
+        $statuses = ['active', 'cancel', 'pause'];
+
+        $data = collect($statuses)->map(function ($status) use ($totalSubscriptions) {
+            $count = Subscription::where('status', $status)->count();
+
+            return [
+                'status' => $status,
+                'count' => $count,
+                'percentage' => $this->calculatePercentage($count, $totalSubscriptions),
+            ];
+        });
+
+        return response()->json([
+            'total' => $totalSubscriptions,
+            'data' => $data,
+        ]);
+    }
+
+    private function calculatePercentage(int $count, int $total): float
+    {
+        return $total > 0 ? round(($count / $total) * 100, 2) : 0.0;
+    }
+
     /**
      * Membuat data revenue bulanan berdasarkan data subscription yang dikelompokkan.
      */
