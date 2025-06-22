@@ -106,4 +106,48 @@ class DashboardAdminController extends Controller
             'data' => $data
         ], 200);
     }
+
+    public function monthlyRecurringRevenue(Request $request)
+    {
+        $startDate = Carbon::parse($request->query('start_date', now()->startOfYear()));
+        $endDate = Carbon::parse($request->query('end_date', now()->endOfYear()));
+
+        $subscriptions = Subscription::where('status', 'active')
+            ->whereBetween('start_date', [$startDate, $endDate])
+            ->get();
+
+        $subscriptionsByMonth = $subscriptions->groupBy(function ($subscription) {
+            return Carbon::parse($subscription->start_date)->format('Y-m');
+        });
+
+        $mrrData = $this->generateMonthlyRevenueData($subscriptionsByMonth, $startDate, $endDate);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Monthly Recurring Revenue retrieved successfully.',
+            'data' => $mrrData,
+        ]);
+    }
+
+    /**
+     * Membuat data revenue bulanan berdasarkan data subscription yang dikelompokkan.
+     */
+    private function generateMonthlyRevenueData($subscriptionsByMonth, $startDate, $endDate)
+    {
+        $data = [];
+        $currentMonth = $startDate->copy()->startOfMonth();
+
+        while ($currentMonth <= $endDate) {
+            $monthKey = $currentMonth->format('Y-m');
+
+            $data[] = [
+                'month' => $monthKey,
+                'revenue' => optional($subscriptionsByMonth->get($monthKey))->sum('total_price') ?? 0,
+            ];
+
+            $currentMonth->addMonth();
+        }
+
+        return $data;
+    }
 }
