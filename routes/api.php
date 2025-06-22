@@ -49,6 +49,11 @@ Route::name('api.')->group(function () {
             Route::get('/dashboard/subscriptions/total-revenue', [DashboardAdminController::class, 'totalRevenue'])->name('dashboard.subscriptions.total-revenue');
             Route::get('/dashboard/subscriptions/active-subs-revenue', [DashboardAdminController::class, 'activeSubscriptionsRevenue'])->name('dashboard.subscriptions.active-subs-revenue');
             Route::get('/dashboard/subscriptions/active-subscriptions', [DashboardAdminController::class, 'activeSubscriptions'])->name('dashboard.subscriptions.active-subscriptions');
+            Route::get('/dashboard/subscriptions/monthly-recurring', [DashboardAdminController::class, 'monthlyRecurringRevenue'])->name('dashboard.subscriptions.monthly-recurring');
+            Route::get('/dashboard/subscriptions/subscriptions-growth', [DashboardAdminController::class, 'subscriptionsGrowth'])->name('dashboard.subscriptions.subscriptions-growth');
+            Route::get('/dashboard/subscriptions/subscriptions-status', [DashboardAdminController::class, 'subscriptionsStatus'])->name('dashboard.subscriptions.subscriptions-status');
+            Route::get('/dashboard/subscriptions/new-subscriptions', [DashboardAdminController::class, 'newSubscriptions'])->name('dashboard.subscriptions.new-subscriptions');
+            Route::get('/dashboard/subscriptions/latest-subscriptions', [DashboardAdminController::class, 'latestSubscriptions'])->name('dashboard.subscriptions.latest-subscriptions');
         });
     });
 });
