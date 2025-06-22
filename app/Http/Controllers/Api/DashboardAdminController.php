@@ -232,6 +232,80 @@ class DashboardAdminController extends Controller
         ], 200);
     }
 
+    public function newSubscriptions(Request $request)
+    {
+        $startDate = Carbon::parse($request->query('start_date', now()->startOfYear()));
+        $endDate = Carbon::parse($request->query('end_date', now()->endOfYear()));
+
+        // Ambil user_id yang pertama kali subscription aktif dalam rentang tanggal
+        $firstTimeUserIds = $this->getFirstTimeUserIds($startDate, $endDate);
+
+        // Ambil subscriptions mereka (hanya yang aktif & di rentang waktu)
+        $firstSubscriptions = $this->getFirstSubscriptions($firstTimeUserIds, $startDate, $endDate);
+
+        $totalUsers = $firstTimeUserIds->count();
+        $plans = ['Diet Plan', 'Protein Plan', 'Royal Plan'];
+
+        $planStats = $this->calculatePlanStats($firstSubscriptions, $plans, $totalUsers);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Get new subscriptions successfully.',
+            'data' => [
+                'total_first_time_users' => $totalUsers,
+                'plans' => $planStats
+            ]
+        ], 200);
+    }
+
+    /**
+     * Get user_ids who subscribe for the first time in the given range
+     */
+    private function getFirstTimeUserIds($startDate, $endDate)
+    {
+        return Subscription::select('user_id')
+            ->where('status', 'active')
+            ->groupBy('user_id')
+            ->havingRaw('MIN(start_date) BETWEEN ? AND ?', [$startDate, $endDate])
+            ->pluck('user_id');
+    }
+
+    /**
+     * Get subscriptions of first-time users in date range
+     */
+    private function getFirstSubscriptions($userIds, $startDate, $endDate)
+    {
+        return Subscription::with('mealPlan')
+            ->whereIn('user_id', $userIds)
+            ->where('status', 'active')
+            ->whereBetween('start_date', [$startDate, $endDate])
+            ->get();
+    }
+
+    /**
+     * Calculate total and percentage per plan
+     */
+    private function calculatePlanStats($subscriptions, $plans, $totalUsers)
+    {
+        $counts = array_fill_keys($plans, 0);
+
+        foreach ($subscriptions as $subscription) {
+            $planName = $subscription->mealPlan->name ?? null;
+            if (isset($counts[$planName])) {
+                $counts[$planName]++;
+            }
+        }
+
+        return collect($counts)->map(function ($count, $plan) use ($totalUsers) {
+            $percentage = $totalUsers > 0 ? round(($count / $totalUsers) * 100, 2) : 0;
+            return [
+                'plan' => $plan,
+                'count' => $count,
+                'percentage' => $percentage,
+            ];
+        })->values();
+    }
+
     private function calculatePercentage(int $count, int $total): float
     {
         return $total > 0 ? round(($count / $total) * 100, 2) : 0.0;
