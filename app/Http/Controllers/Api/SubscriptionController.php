@@ -20,17 +20,24 @@ class SubscriptionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        $startDate = $request->query('start_date');
+        $endDate = $request->query('end_date');
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $query = Subscription::with(['user:id,name', 'mealPlan:id,name']);
+
+        if ($startDate && $endDate) {
+            $query->whereBetween('created_at', [$startDate, $endDate]);
+        }
+
+        $subscriptions = $query->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Get data subscriptions successfully.',
+            'data' => $subscriptions
+        ], 200);
     }
 
     /**
@@ -102,38 +109,6 @@ class SubscriptionController extends Controller
             'message' => 'Successful meal plan subscription.',
             'data' => $subscription
         ], 201);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 
     public function pauseSubscription(Request $request, $id)
