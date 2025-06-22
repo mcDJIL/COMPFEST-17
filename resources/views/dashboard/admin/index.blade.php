@@ -194,55 +194,55 @@
                 <div class="flex flex-col items-center gap-8 xl:flex-row">
                     <div id="chartThirteen" class="chartDarkStyle"></div>
                     <div class="flex flex-col items-start gap-6 sm:flex-row xl:flex-col">
-                        <div class="flex items-start gap-2.5">
+                        <div class="flex items-start gap-2.5" id="subs-status-active">
                             <div class="bg-[#3641f5] mt-1.5 h-2 w-2 rounded-full"></div>
                             <div>
                                 <h5 class="mb-1 font-medium text-gray-800 text-sm">
                                     Active
                                 </h5>
                                 <div class="flex items-center gap-2">
-                                    <p class="font-medium text-gray-700 text-sm">
-                                        48%
+                                    <p class="font-medium text-gray-700 text-sm percentage">
+                                        0%
                                     </p>
                                     <div class="w-1 h-1 bg-gray-400 rounded-full"></div>
-                                    <p class="text-gray-500 text-sm">
-                                        2,040 Subscription
+                                    <p class="text-gray-500 text-sm count">
+                                        0 Subscriptions
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="flex items-start gap-2.5">
+                        <div class="flex items-start gap-2.5" id="subs-status-pause">
                             <div class="bg-[#7592ff] mt-1.5 h-2 w-2 rounded-full"></div>
                             <div>
                                 <h5 class="mb-1 font-medium text-gray-800 text-sm">
                                     Pause
                                 </h5>
                                 <div class="flex items-center gap-2">
-                                    <p class="font-medium text-gray-700 text-sm">
-                                        33%
+                                    <p class="font-medium text-gray-700 text-sm percentage">
+                                        0%
                                     </p>
                                     <div class="w-1 h-1 bg-gray-400 rounded-full"></div>
-                                    <p class="text-gray-400 text-sm">
-                                        1,402 Subscription
+                                    <p class="text-gray-400 text-sm count">
+                                        0 Subscriptions
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="flex items-start gap-2.5">
+                        <div class="flex items-start gap-2.5" id="subs-status-cancel">
                             <div class="bg-[#dde9ff] mt-1.5 h-2 w-2 rounded-full"></div>
                             <div>
                                 <h5 class="mb-1 font-medium text-gray-800 text-sm">
                                     Cancel
                                 </h5>
                                 <div class="flex items-center gap-2">
-                                    <p class="font-medium text-gray-700 text-sm">
-                                        19%
+                                    <p class="font-medium text-gray-700 text-sm percentage">
+                                        0%
                                     </p>
                                     <div class="w-1 h-1 bg-gray-400 rounded-full"></div>
-                                    <p class="text-gray-500 text-sm">
-                                        510 Subscription
+                                    <p class="text-gray-500 text-sm count">
+                                        0 Subscriptions
                                     </p>
                                 </div>
                             </div>

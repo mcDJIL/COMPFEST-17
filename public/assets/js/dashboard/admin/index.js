@@ -16,6 +16,7 @@
             this.loadCardData();
             this.loadMonthlyRecurringData();
             this.loadSubscriptionsGrowth();
+            this.loadSubscriptionsStatus();
 
             this.renderChartSubscriptions();
             this.renderPieChart();
@@ -132,6 +133,31 @@
 
                     $icon.html(iconClass ? `<i class="${iconClass}"></i>` : "");
                 }
+            });
+        }
+
+        loadSubscriptionsStatus() {
+            const url = ROUTES.dashboard_subscriptions_subscriptions_status;
+
+            HelperApi.apiRequest("GET", url, {}, (res) => {
+                if (!res.status) return;
+
+                const chartData = res.data.chart;
+                const total = res.data.total;
+
+                // Render pie chart
+                this.renderPieChart(chartData);
+
+                // Render detail ke UI
+                chartData.forEach(item => {
+                    const label = item.status.toLowerCase(); // e.g. "active"
+                    const percent = item.percentage.toFixed(0);
+                    const count = item.count.toLocaleString();
+
+                    const $section = $(`#subs-status-${label}`);
+                    $section.find(".percentage").text(`${percent}%`);
+                    $section.find(".count").text(`${count} Subscriptions`);
+                });
             });
         }
 
@@ -293,11 +319,15 @@
             }
         }
 
-        renderPieChart() {
+        renderPieChart(data) {
+            const series = data.map(item => item.count);
+            const labels = data.map(item => item.status.charAt(0).toUpperCase() + item.status.slice(1));
+            const total = series.reduce((sum, val) => sum + val, 0).toLocaleString();
+
             const chartThirteenOptions = {
-                series: [900, 700, 850],
+                series: series,
                 colors: ["#3641f5", "#7592ff", "#dde9ff"],
-                labels: ["Affiliate", "Direct", "Adsense"],
+                labels: labels,
                 chart: {
                     fontFamily: "Outfit, sans-serif",
                     type: "donut",
@@ -307,8 +337,7 @@
                 stroke: {
                     show: false,
                     width: 4,
-                    // Creates a gap between the series
-                    colors: "transparent", // Gap color (use background color to make it seamless)
+                    colors: "transparent",
                 },
                 plotOptions: {
                     pie: {
@@ -323,18 +352,17 @@
                                     color: "#1D2939",
                                     fontSize: "12px",
                                     fontWeight: "normal",
-                                    text: "Total 3.5K",
                                 },
                                 value: {
                                     show: true,
                                     offsetY: 10,
                                     color: "#667085",
                                     fontSize: "14px",
-                                    formatter: () => "Used of 1.1K",
                                 },
                                 total: {
                                     show: true,
                                     label: "Total",
+                                    formatter: () => `${total}`,
                                     color: "#000000",
                                     fontSize: "20px",
                                     fontWeight: "bold",
@@ -356,29 +384,23 @@
                     {
                         breakpoint: 640,
                         options: {
-                            chart: {
-                                width: 280,
-                                height: 280,
-                            },
+                            chart: { width: 280, height: 280 },
                         },
                     },
                     {
                         breakpoint: 2600,
                         options: {
-                            chart: {
-                                width: 240,
-                                width: 240,
-                            },
+                            chart: { width: 240, height: 240 },
                         },
                     },
                 ],
             };
-            const chartSelector = document.querySelectorAll("#chartThirteen");
-            if (chartSelector.length) {
-                const chartThirteen = new ApexCharts(
-                    document.querySelector("#chartThirteen"),
-                    chartThirteenOptions
-                );
+
+            const chartSelector = document.querySelector("#chartThirteen");
+            if (chartSelector) {
+                // Hapus chart lama jika ada
+                chartSelector.innerHTML = "";
+                const chartThirteen = new ApexCharts(chartSelector, chartThirteenOptions);
                 chartThirteen.render();
             }
         }
