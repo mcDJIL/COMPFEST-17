@@ -13,12 +13,13 @@
         }
 
         init() {
+            this.loadCardData();
             this.loadMonthlyRecurringData();
+            this.loadSubscriptionsGrowth();
+
             this.renderChartSubscriptions();
             this.renderPieChart();
             this.renderFlatpickr();
-
-            this.loadCardData();
         }
 
         loadCardData() {
@@ -79,6 +80,58 @@
                 const rawData = res.data || [];
                 const chartData = this.formatChartRevenueData(rawData);
                 this.renderRevenueChart(chartData);
+            });
+        }
+
+        loadSubscriptionsGrowth() {
+            const url = ROUTES.dashboard_subscriptions_subscriptions_growth;
+
+            HelperApi.apiRequest("GET", url, {}, (res) => {
+                if (res.status) {
+                    const data = res.data;
+
+                    const percentage = data.monthly_growth_percentage.toFixed(2);
+                    const trend = data.monthly_trend;
+
+                    // Update radial chart
+                    if (this.subsRadialChart) {
+                        this.subsRadialChart.updateSeries([Number(percentage)]);
+                    }
+
+                    // Badge growth
+                    const $badge = $("#subs-growth-badge");
+                    $badge
+                        .text((trend === "down" ? "-" : "+") + percentage + "%")
+                        .attr(
+                            "class",
+                            `absolute left-1/2 top-[95%] -translate-x-1/2 -translate-y-[85%] rounded-full px-3 py-1 text-xs font-medium ${trend === "down"
+                                ? "bg-red-50 text-red-600"
+                                : "bg-green-50 text-green-600"}`
+                        );
+
+                    // Deskripsi bawah chart
+                    const daily = data.daily_growth_percentage.toFixed(2);
+                    $("#subs-growth-text").text(
+                        `You gain ${data.active_subscriptions_today} active subscriptions today. ${daily > 0 ? "Nice!" : "Keep pushing!"}`
+                    );
+
+                    // Ringkasan info
+                    $("#subs-total").text(data.total_subscriptions);
+                    $("#subs-last-month").text(data.total_subscriptions_last_month);
+                    $("#subs-this-month-value").text(data.total_subscriptions_this_month);
+
+                    // Update trend icon pakai Font Awesome
+                    const $icon = $("#subs-this-month-trend-icon");
+                    let iconClass = "";
+
+                    if (trend === "up") {
+                        iconClass = "fa-solid fa-arrow-up text-green-500";
+                    } else if (trend === "down") {
+                        iconClass = "fa-solid fa-arrow-down text-red-500";
+                    }
+
+                    $icon.html(iconClass ? `<i class="${iconClass}"></i>` : "");
+                }
             });
         }
 
@@ -164,7 +217,7 @@
 
         renderChartSubscriptions() {
             const chartTwoOptions = {
-                series: [75.55],
+                series: [0], // default sementara, akan diupdate dari API
                 colors: ["#465FFF"],
                 chart: {
                     fontFamily: "Outfit, sans-serif",
@@ -184,7 +237,7 @@
                         track: {
                             background: "#E4E7EC",
                             strokeWidth: "100%",
-                            margin: 5, // margin is in pixels
+                            margin: 5,
                         },
                         dataLabels: {
                             name: {
@@ -195,9 +248,7 @@
                                 fontWeight: "600",
                                 offsetY: -50,
                                 color: "#1D2939",
-                                formatter: function (val) {
-                                    return val + "%";
-                                },
+                                formatter: (val) => `${val.toFixed(2)}%`,
                             },
                         },
                     },
@@ -234,11 +285,11 @@
             const chartSelector = document.querySelectorAll("#chartTwo");
 
             if (chartSelector.length) {
-                const chartFour = new ApexCharts(
+                this.subsRadialChart = new ApexCharts(
                     document.querySelector("#chartTwo"),
                     chartTwoOptions
                 );
-                chartFour.render();
+                this.subsRadialChart.render();
             }
         }
 
