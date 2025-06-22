@@ -41,7 +41,7 @@
                             
                         </div>
                         
-                        <div class="swiper-pagination absolute w-full lg:!w-20 !-bottom-[5px] lg:!-left-4"></div>
+                        <div class="swiper-pagination absolute w-full lg:!w-20 !-bottom-[5px]"></div>
                     </div>
                 </div>
             </div>

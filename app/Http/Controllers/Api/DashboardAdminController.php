@@ -26,7 +26,7 @@ class DashboardAdminController extends Controller
         if ($totalRevenueLastMonth != 0) {
             $growth = ($totalRevenueThisMonth - $totalRevenueLastMonth) / $totalRevenueLastMonth * 100;
         } else {
-            $growth = 100;
+            $growth = 0;
         }
 
         $data = [
@@ -59,7 +59,7 @@ class DashboardAdminController extends Controller
         if ($totalRevenueLastMonth != 0) {
             $growth = ($totalRevenueThisMonth - $totalRevenueLastMonth) / $totalRevenueLastMonth * 100;
         } else {
-            $growth = 100;
+            $growth = 0;
         }
 
         $data = [
@@ -94,7 +94,7 @@ class DashboardAdminController extends Controller
         if ($totalActiveSubsLastMonth != 0) {
             $growth = ($totalActiveSubsThisMonth - $totalActiveSubsLastMonth) / $totalActiveSubsLastMonth * 100;
         } else {
-            $growth = 100;
+            $growth = 0;
         }
 
         $data = [
@@ -156,7 +156,7 @@ class DashboardAdminController extends Controller
         if ($totalActiveSubsLastMonth != 0) {
             $monthlyGrowth = ($totalActiveSubsThisMonth - $totalActiveSubsLastMonth) / $totalActiveSubsLastMonth * 100;
         } else {
-            $monthlyGrowth = 100;
+            $monthlyGrowth = 0;
         }
 
         $monthlyDifference = $totalActiveSubsThisMonth - $totalActiveSubsLastMonth;
@@ -182,7 +182,7 @@ class DashboardAdminController extends Controller
         if ($totalYesterdayActiveSubs != 0) {
             $dailyGrowth = ($totalTodayActiveSubs - $totalYesterdayActiveSubs) / $totalYesterdayActiveSubs * 100;
         } else {
-            $dailyGrowth = 100;
+            $dailyGrowth = 0;
         }
 
         $data = [

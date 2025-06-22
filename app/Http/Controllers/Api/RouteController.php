@@ -82,7 +82,7 @@ class RouteController extends Controller
                         $functionCode = file($reflector->getFileName());
                         $functionBody = implode("", array_slice($functionCode, $reflector->getStartLine(), $reflector->getEndLine() - $reflector->getStartLine()));
 
-                        if (preg_match('/Validator::make\(\s*\$request->all\(\),\s*(\[.*?\])\s*\)/s', $functionBody, $matches)) {
+                        if (preg_match("/Validator::make\(\s*\$request->all\(\),\s*(\[.*?\])\s*\)/s", $functionBody, $matches)) {
                             $rulesArrayString = $matches[1];
                             eval('$validatorRules = ' . $rulesArrayString . ';');
                         }

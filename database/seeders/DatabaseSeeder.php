@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             MealTypeSeeder::class,
             DeliveryDaySeeder::class,
             AdminUserSeeder::class,
+            TestimonialSeeder::class,
         ]);
     }
 }

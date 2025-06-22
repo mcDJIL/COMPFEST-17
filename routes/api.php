@@ -56,7 +56,7 @@ Route::name('api.')->group(function () {
             Route::get('/dashboard/subscriptions/latest-subscriptions', [DashboardAdminController::class, 'latestSubscriptions'])->name('dashboard.subscriptions.latest-subscriptions');
             
             Route::get('/dashboard/subscriptions', [SubscriptionController::class, 'index'])->name('dashboard.subscriptions.index');
-            Route::get('/dashboard/subscriptions/reactivations', [SubscriptionController::class, 'index'])->name('dashboard.subscriptions.reactivations');
+            Route::get('/dashboard/subscriptions/reactivations', [SubscriptionController::class, 'restartedSubscriptions'])->name('dashboard.subscriptions.reactivations');
         });
     });
 });

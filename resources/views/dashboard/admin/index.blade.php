@@ -282,7 +282,7 @@
                 </div>
 
                 <div class="relative text-center py-5">
-                    <h2 class="text-6xl font-semibold mb-2 .new-subscription-total">0</h2>
+                    <h2 class="text-6xl font-semibold mb-2 new-subscription-total">0</h2>
                 </div>
 
                 <div class="border-gray-200 space-y-2.5 border-t pt-6 new-subscription-list">
