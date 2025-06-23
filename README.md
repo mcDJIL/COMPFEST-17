@@ -55,7 +55,7 @@ This application is built using the Laravel framework as the backend.
   APP_KEY=
   APP_DEBUG=true
   APP_URL=http://localhost:8000
-  API_KEY=_sea_catering_token
+  API_TOKEN=_sea_catering_token
 
   DB_CONNECTION=mysql
   DB_HOST=127.0.0.1
