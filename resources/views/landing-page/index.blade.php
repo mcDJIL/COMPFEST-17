@@ -42,7 +42,11 @@
             width: 280px !important;
             height: 240px !important;
         }
-        
+        .testimonial-swiper {
+            touch-action: pan-y;
+            overflow: visible;
+        }
+            
         @media (min-width: 640px) {
             .testimonial-swiper .swiper-slide {
                 width: 320px !important;

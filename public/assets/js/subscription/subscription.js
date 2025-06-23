@@ -301,6 +301,10 @@
                 );
             }
 
+            if (!isValid) {
+                return;
+            }
+
             return isValid;
         }
 

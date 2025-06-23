@@ -56,10 +56,8 @@
                 slidesPerView: 1.2,
                 spaceBetween: 16,
                 centeredSlides: false,
-                mousewheel: {
-                    forceToAxis: true,
-                    invert: true,
-                },
+                simulateTouch: true,
+                allowTouchMove: true,
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
