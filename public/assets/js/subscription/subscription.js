@@ -34,11 +34,18 @@
                     deliveryDays: $('#delivery-days').val(),
                     allergies: $('#allergies').val(),
                 }
+                
+                const modalElement = document.getElementById('price-modal');
+                const modalInstance = new Modal(modalElement);
 
-                // Validasi form terlebih dahulu
-                if (!this.validateForm(data)) {
+                const isValid = this.validateForm(data);
+                if (!isValid) {
+                    // Jangan lanjut ke kalkulasi atau buka modal jika form tidak valid
+                    modalInstance.hide();
                     return;
                 }
+
+                modalInstance.show();
 
                 this.calculatePrice(data);
             });
@@ -47,6 +54,20 @@
             $(document).on('click', '[data-modal-hide="price-modal"]:contains("Accept")', () => {
                 this.submitSubscription();
             });
+
+            $(document).on('click', '.btn-decline', () => {
+                const modalElement = document.getElementById('price-modal');
+                const modalInstance = new Modal(modalElement);
+
+                modalInstance.hide();
+            })
+
+            $(document).on('click', '.btn-close-price', () => {
+                const modalElement = document.getElementById('price-modal');
+                const modalInstance = new Modal(modalElement);
+
+                modalInstance.hide();
+            })
         }
 
         // Load semua data yang diperlukan dari API
@@ -269,13 +290,6 @@
             if (!data.phone.trim()) {
                 errorMessages.push('Phone number is required');
                 isValid = false;
-            } else {
-                // Validasi nomor telepon: harus angka, diawali dengan 08, dan panjang 10-13 digit
-                const phonePattern = /^08[0-9]{8,11}$/;
-                if (!phonePattern.test(data.phone.trim())) {
-                    errorMessages.push('Phone number format is invalid (must start with 08 and be 10–13 digits)');
-                    isValid = false;
-                }
             }
 
             if (!data.planSelection) {
@@ -299,10 +313,6 @@
                     errorMessages.join('<br>'),
                     $(".subscription-error-message")
                 );
-            }
-
-            if (!isValid) {
-                return;
             }
 
             return isValid;
@@ -348,7 +358,10 @@
                     
                     this.resetForm();
                     // Close modal
-                    $('[data-modal-hide="price-modal"]').first().click();
+                    const modalElement = document.getElementById('price-modal');
+                    const modalInstance = new Modal(modalElement);
+
+                    modalInstance.hide();
                 } else {
                     HelperApi.showAlert(
                         "error",
