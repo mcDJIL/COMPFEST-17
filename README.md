@@ -105,6 +105,7 @@ Start the server
 **Server:** Laravel, PHP
 
 
-## Link Website
+## Quick Links
 
-[www.seactering.site](https://seacatering.site)
+- [Visit Website](https://seacatering.site)   
+- [My Figma Design](https://www.figma.com/design/SExG6xYGSA6a4t4OsM3ozi/COMPFEST-17---Sea-Catering-Design?node-id=0-1&t=WFDso5batorus6rl-1)
