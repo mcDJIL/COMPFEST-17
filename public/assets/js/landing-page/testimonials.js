@@ -8,6 +8,7 @@
 
     class Testimonials {
         constructor() {
+            this.swiperInstance = null;
             this.init();
         }
 
@@ -116,7 +117,11 @@
         }
 
         renderSwiper() {
-            const swiper = new Swiper('.testimonial-swiper', {
+            if (this.swiperInstance) {
+                this.swiperInstance.destroy(true, true);
+            }
+
+            this.swiperInstance = new Swiper('.testimonial-swiper', {
                 direction: 'horizontal',
                 loop: true,
                 spaceBetween: 16,
