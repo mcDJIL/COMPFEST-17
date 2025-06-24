@@ -14,7 +14,6 @@
         init() {
             this.getTestimonials();
             this.getSummaryReview();
-            this.renderSwiper();
         }
 
         getTestimonials() {
@@ -105,6 +104,8 @@
             });
 
             testimonialsWrapper.append(testimonialItem);
+
+            this.renderSwiper();
         }
 
         loadSeaCateringBadge(data) {
@@ -118,15 +119,14 @@
             const swiper = new Swiper('.testimonial-swiper', {
                 direction: 'horizontal',
                 loop: true,
-                grabCursor: true,
                 spaceBetween: 16,
+                autoplay: {
+                    delay: 3000,  // Set delay between slides in milliseconds
+                    reverseDirection: true,  // Set autoplay direction to left (reverse)
+                },
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
                 },
                 breakpoints: {
                     0: {

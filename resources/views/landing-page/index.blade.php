@@ -42,10 +42,7 @@
             width: 280px !important;
             height: 240px !important;
         }
-        .testimonial-swiper {
-            touch-action: pan-y;
-        }
-
+        
         @media (min-width: 640px) {
             .testimonial-swiper .swiper-slide {
                 width: 320px !important;
@@ -118,6 +115,8 @@
     @stack('vendor-script')
 
     <script>
+        document.documentElement.classList.remove('dark');
+
         function getAuthorization() {
             return "Bearer " + Cookies.get("{{ env('API_TOKEN') }}");
         }

@@ -41,10 +41,6 @@
                             
                         </div>
                         
-                        <div class="swiper-nav-buttons flex justify-between items-center mt-4 md:hidden">
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                        </div>
                         <div class="swiper-pagination absolute w-full lg:!w-20 !-bottom-[5px]"></div>
                     </div>
                 </div>
