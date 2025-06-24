@@ -41,6 +41,10 @@
                             
                         </div>
                         
+                        <div class="swiper-nav-buttons flex justify-between items-center mt-4 md:hidden">
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
                         <div class="swiper-pagination absolute w-full lg:!w-20 !-bottom-[5px]"></div>
                     </div>
                 </div>
@@ -49,48 +53,5 @@
     </div>
 
     @push('script')
-        <script>
-            const swiper = new Swiper('.testimonial-swiper', {
-                direction: 'horizontal',
-                loop: true,
-                slidesPerView: 1.2,
-                spaceBetween: 16,
-                centeredSlides: false,
-                simulateTouch: true,
-                allowTouchMove: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-
-                breakpoints: {
-                    300: {
-                        slidesPerView: 1.1,
-                        spaceBetween: 12,
-                    },
-                    480: {
-                        slidesPerView: 1.3,
-                        spaceBetween: 16,
-                    },
-                    640: {
-                        slidesPerView: 1.5,
-                        spaceBetween: 20,
-                    },
-                    768: {
-                        slidesPerView: 1.8,
-                        spaceBetween: 24,
-                    },
-                    1024: {
-                        slidesPerView: 2.2,
-                        spaceBetween: 24,
-                    },
-                    1280: {
-                        slidesPerView: 2.5,
-                        spaceBetween: 32,
-                    }
-                }
-            });
-        </script>
-
         <script src="{{ url('assets/js/landing-page/testimonials.js') }}"></script>
     @endpush

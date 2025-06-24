@@ -14,6 +14,7 @@
         init() {
             this.getTestimonials();
             this.getSummaryReview();
+            this.renderSwiper();
         }
 
         getTestimonials() {
@@ -111,6 +112,55 @@
             $(".summary-review-badge").text(data.summary_review);
             $(".rating-badge").text(data.rating_average);
             $(".stars-badge").html(this.renderStars(data.rating_average));
+        }
+
+        renderSwiper() {
+            const swiper = new Swiper('.testimonial-swiper', {
+                direction: 'horizontal',
+                loop: true,
+                grabCursor: true,
+                spaceBetween: 16,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    0: {
+                        slidesPerView: 1.05,
+                        centeredSlides: true,
+                        spaceBetween: 12,
+                    },
+                    480: {
+                        slidesPerView: 1.3,
+                        centeredSlides: true,
+                        spaceBetween: 16,
+                    },
+                    640: {
+                        slidesPerView: 1.5,
+                        centeredSlides: true,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 1.8,
+                        centeredSlides: true,
+                        spaceBetween: 24,
+                    },
+                    1024: {
+                        slidesPerView: 2.2,
+                        centeredSlides: false,
+                        spaceBetween: 24,
+                    },
+                    1280: {
+                        slidesPerView: 2.5,
+                        centeredSlides: false,
+                        spaceBetween: 32,
+                    }
+                }
+            });
         }
 
         renderStars(amount) {
