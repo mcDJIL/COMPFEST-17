@@ -107,7 +107,9 @@
 
             testimonialsWrapper.append(testimonialItem);
 
-            this.renderSwiper();
+            setTimeout(() => {
+                this.renderSwiper();
+            }, 500);
         }
 
         loadSeaCateringBadge(data) {
@@ -127,8 +129,8 @@
                 loop: true, 
                 spaceBetween: 16,
                 autoplay: {
-                    delay: 3000,  // Set delay between slides in milliseconds
-                    reverseDirection: true,  // Set autoplay direction to left (reverse)
+                    delay: 3000,
+                    reverseDirection: true,
                 },
                 pagination: {
                     el: '.swiper-pagination',
@@ -136,11 +138,11 @@
                 },
                 breakpoints: {
                     0: {
-                        slidesPerView: 1.05,
-                        centeredSlides: true,
-                        spaceBetween: 12,
+                        slidesPerView: 1,
+                        centeredSlides: false,
+                        spaceBetween: 0,
                     },
-                    480: {
+                    540: {
                         slidesPerView: 1.3,
                         centeredSlides: true,
                         spaceBetween: 16,
