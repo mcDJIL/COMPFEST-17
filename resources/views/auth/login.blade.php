@@ -6,10 +6,10 @@
         <div class="w-full flex flex-col items-center">
             <div class="flex flex-col items-center mb-10">
                 <div class="mb-3">
-                    <img class="w-28" src="{{ url('assets/images/logo2.png') }}" alt="">
+                    <img class="w-20 sm:w-28" src="{{ url('assets/images/logo2.png') }}" alt="">
                 </div>
                 <div class="">
-                    <h1 class="text-4xl font-bold text-green-800">Sea Catering</h1>
+                    <h1 class="text-3xl sm:text-4xl font-bold text-green-800">Sea Catering</h1>
                 </div>
             </div>
 
