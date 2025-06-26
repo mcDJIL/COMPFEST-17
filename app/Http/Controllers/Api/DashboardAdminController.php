@@ -281,6 +281,32 @@ class DashboardAdminController extends Controller
         ], 200);
     }
 
+    public function totalRestartedSubscriptions(Request $request)
+    {
+        $startDate = $request->query('start_date');
+        $endDate = $request->query('end_date');
+
+        // Ambil user yang pernah cancel
+        $usersWithCancelled = Subscription::where('status', 'cancel')->pluck('user_id');
+
+        $query = Subscription::with(['user:id,name', 'mealPlan:id,name'])
+            ->whereIn('user_id', $usersWithCancelled)
+            ->where('status', 'active');
+
+        // Jika user kirim filter tanggal, apply filter
+        if ($startDate && $endDate) {
+            $query->whereBetween('created_at', [$startDate, $endDate]);
+        }
+
+        $subscriptions = $query->count();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Get total restarted subscriptions successfully.',
+            'data' => $subscriptions
+        ], 200);
+    }
+
     /**
      * Get user_ids who subscribe for the first time in the given range (or all time if null)
      */

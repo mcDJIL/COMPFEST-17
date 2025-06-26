@@ -80,12 +80,6 @@
                         Contact Us
                     </a>
                 </li>
-
-                <li>
-                    <a href="/auth/login" class="md:hidden nav-link group relative block py-2 px-3 mt-2 mb-2 text-gray-500 rounded-sm transition-colors duration-300 hover:after:w-full hover:text-white hover:bg-green-600">
-                        Login
-                    </a>
-                </li>
             </ul>
         </div>
     </div>

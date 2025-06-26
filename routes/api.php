@@ -54,6 +54,7 @@ Route::name('api.')->group(function () {
             Route::get('/dashboard/subscriptions/subscriptions-status', [DashboardAdminController::class, 'subscriptionsStatus'])->name('dashboard.subscriptions.subscriptions-status');
             Route::get('/dashboard/subscriptions/new-subscriptions', [DashboardAdminController::class, 'newSubscriptions'])->name('dashboard.subscriptions.new-subscriptions');
             Route::get('/dashboard/subscriptions/latest-subscriptions', [DashboardAdminController::class, 'latestSubscriptions'])->name('dashboard.subscriptions.latest-subscriptions');
+            Route::get('/dashboard/subscriptions/total-reactivations', [DashboardAdminController::class, 'totalRestartedSubscriptions'])->name('dashboard.subscriptions.total-reactivations');
             
             Route::get('/dashboard/subscriptions', [SubscriptionController::class, 'index'])->name('dashboard.subscriptions.index');
             Route::get('/dashboard/subscriptions/reactivations', [SubscriptionController::class, 'restartedSubscriptions'])->name('dashboard.subscriptions.reactivations');

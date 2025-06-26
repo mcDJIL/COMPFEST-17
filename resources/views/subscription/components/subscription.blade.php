@@ -21,24 +21,24 @@
                     </div>
                 </div>
             @else
-                <div class="grid gap-6 mb-6 md:grid-cols-2 w-full">
-                    <div class="subscription-error-message hidden col-span-2"></div>
-                    <div class="subscription-success-message hidden col-span-2"></div>
+                <div class="grid gap-6 mb-6 grid-cols-12 w-full">
+                    <div class="subscription-error-message hidden col-span-12"></div>
+                    <div class="subscription-success-message hidden col-span-12"></div>
 
-                    <div>
+                    <div class="col-span-12 sm:col-span-6">
                         <label for="full-name" class="block mb-2 font-medium text-gray-900">Full Name</label>
                         <input value="{{ $user->name ?? null }}" type="text" id="full-name"
                             class="bg-gray-50 border border-[#333333] text-[#333333] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="Enter your full name" required />
                     </div>
-                    <div>
+                    <div class="col-span-12 sm:col-span-6">
                         <label for="phone" class="block mb-2 font-medium text-gray-900">Phone
                             Number</label>
                         <input type="text" id="phone"
                             class="bg-gray-50 border border-[#333333] text-[#333333] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="Enter your phone number" required />
                     </div>
-                    <div>
+                    <div class="col-span-12 sm:col-span-6">
                         <label for="plan-selection" class="block mb-2 font-medium text-gray-900">Plan Selection</label>
                         <select id="plan-selection"
                             class="bg-gray-50 border border-[#333333] text-[#333333] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -49,7 +49,7 @@
                             <option value="3">Royal Plan</option>
                         </select>
                     </div>
-                    <div>
+                    <div class="col-span-12 sm:col-span-6">
                         <label for="meal-type" class="block mb-2 font-medium text-gray-900">Meal Type</label>
                         <select id="meal-type" required name="meal-types[]" multiple="multiple">
                             <option value="1">Breakfast</option>
@@ -58,7 +58,7 @@
                         </select>
                         <small class="text-[#333333]">You can choose more than one option</small>
                     </div>
-                    <div class="col-span-2">
+                    <div class="col-span-12">
                         <label for="delivery-days" class="block mb-2 font-medium text-gray-900">Delivery Days</label>
                         <select id="delivery-days" required name="delivery-days[]" multiple="multiple">
                             <option value="1">Monday</option>
@@ -71,7 +71,7 @@
                         </select>
                         <small class="text-[#333333]">You can choose more than one option</small>
                     </div>
-                    <div class="col-span-2">
+                    <div class="col-span-12">
                         <label for="allergies" class="block mb-2 font-medium text-gray-900">Allergies</label>
                         <textarea rows="8" id="allergies"
                         class="bg-gray-50 border border-[#333333] text-[#333333] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"

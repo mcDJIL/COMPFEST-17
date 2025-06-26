@@ -18,6 +18,7 @@
             this.loadSubscriptionsGrowth();
             this.loadSubscriptionsStatus();
             this.loadNewSubscriptions();
+            this.loadReactivationsTotal();
             this.loadLatestSubscriptions();
 
             this.renderChartSubscriptions();
@@ -25,6 +26,7 @@
 
             this.renderFlatpickr();
             this.renderFlatpickrNewSubs();
+            this.renderFlatpickrReactivations();
         }
 
         loadCardData() {
@@ -160,7 +162,7 @@
 
                     const $section = $(`#subs-status-${label}`);
                     $section.find(".percentage").text(`${percent}%`);
-                    $section.find(".count").text(`${count} Subscriptions`);
+                    $section.find(".count").text(`${count}`);
                 });
             });
         }
@@ -200,6 +202,24 @@
                         `;
                         $(".new-subscription-list").append(html);
                     });
+                }
+            });
+        }
+
+        loadReactivationsTotal(startDate = null, endDate = null) {
+            const url = ROUTES.dashboard_subscriptions_total_reactivations;
+            const params = {};
+
+            if (startDate && endDate) {
+                params.start_date = startDate;
+                params.end_date = endDate;
+            }
+
+            HelperApi.apiRequest("GET", url, params, (res) => {
+                if (res.status) {
+                    const data = res.data;
+
+                    $(".reactivations-total").text(data.total_first_time_users);
                 }
             });
         }
@@ -547,15 +567,41 @@
                 mode: "range",
                 dateFormat: "Y-m-d",
                 onChange: (selectedDates) => {
-                    let startDate = null;
-                    let endDate = null;
-
                     if (selectedDates.length === 2) {
-                        startDate = selectedDates[0].toISOString().split("T")[0];
-                        endDate = selectedDates[1].toISOString().split("T")[0];
-                    }
+                        const formatDate = (date) => {
+                            const year = date.getFullYear();
+                            const month = String(date.getMonth() + 1).padStart(2, "0");
+                            const day = String(date.getDate()).padStart(2, "0");
+                            return `${year}-${month}-${day}`;
+                        };
 
-                    this.loadNewSubscriptions(startDate, endDate);
+                        const startDate = formatDate(selectedDates[0]);
+                        const endDate = formatDate(selectedDates[1]);
+
+                        this.loadNewSubscriptions(startDate, endDate);
+                    }
+                }
+            });
+        }
+
+        renderFlatpickrReactivations() {
+            flatpickr(".datepicker-reactivations", {
+                mode: "range",
+                dateFormat: "Y-m-d",
+                onChange: (selectedDates) => {
+                    if (selectedDates.length === 2) {
+                        const formatDate = (date) => {
+                            const year = date.getFullYear();
+                            const month = String(date.getMonth() + 1).padStart(2, "0");
+                            const day = String(date.getDate()).padStart(2, "0");
+                            return `${year}-${month}-${day}`;
+                        };
+
+                        const startDate = formatDate(selectedDates[0]);
+                        const endDate = formatDate(selectedDates[1]);
+
+                        this.loadReactivationsTotal(startDate, endDate);
+                    }
                 }
             });
         }
