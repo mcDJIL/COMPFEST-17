@@ -5,4 +5,4 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
 
 Schedule::command('subscriptions:end-today')
-->dailyAt('00:01');
+->cron('* * * * *');
