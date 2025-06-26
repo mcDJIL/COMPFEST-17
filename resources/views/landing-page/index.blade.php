@@ -23,8 +23,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     {{-- Vendors css --}}
-    <link rel="stylesheet" href="{{ url('assets/css/swiper-bundle.min.css') }}">
     @stack('vendor-style')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
     <style>
         html {
@@ -108,9 +108,9 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="{{ url('assets/js/jquery-3.6.1.min.js') }}"></script>
     <script src="{{ url('assets/js/js.cookie.min.js') }}"></script>
-    <script src="{{ url('assets/js/swiper-bundle.min.js') }}"></script>
     <script src="{{ url('assets/js/helper-api.js') }}"></script>
     @stack('vendor-script')
 

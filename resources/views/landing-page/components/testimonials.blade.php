@@ -49,5 +49,5 @@
     </div>
 
     @push('script')
-        <script src="{{ url('assets/js/landing-page/testimonials.js') }}"></script>
+        <script type="module" src="{{ url('assets/js/landing-page/testimonials.js') }}"></script>
     @endpush

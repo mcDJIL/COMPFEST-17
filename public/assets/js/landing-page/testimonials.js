@@ -4,6 +4,7 @@
         import("../HelperApi.js").then((m) => m.default),
     ]);
 
+
     const ROUTES = ApiRoutes.routes;
 
     class Testimonials {
@@ -123,7 +124,7 @@
 
             this.swiperInstance = new Swiper('.testimonial-swiper', {
                 direction: 'horizontal',
-                loop: true,
+                loop: true, 
                 spaceBetween: 16,
                 autoplay: {
                     delay: 3000,  // Set delay between slides in milliseconds
