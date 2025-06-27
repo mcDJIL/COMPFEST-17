@@ -18,13 +18,6 @@
                   <span class="ms-3">Subscriptions</span>
                </a>
             </li>
-            <li>
-               <a href="{{ route('dashboard.admin.profile') }}" class="{{ Route::currentRouteName() === 'dashboard.admin.profile' ? 'bg-gray-100 text-gray-900' : '' }} mb-1 hover:bg-gray-50 group-hover:text-gray-900 flex items-center p-2 text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700 group">
-                  <i class="fa-solid fa-user w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 dark:group-hover:text-white"></i>
-
-                  <span class="ms-3">Profile</span>
-               </a>
-            </li>
          </ul>
       @else
          <ul>
@@ -35,13 +28,6 @@
                      <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
                   </svg>
                   <span class="ms-3">Dashboard</span>
-               </a>
-            </li>
-            <li>
-               <a href="{{ route('dashboard.user.profile') }}" class="{{ Route::currentRouteName() === 'dashboard.user.profile' ? 'bg-gray-100 text-gray-900' : '' }} mb-1 hover:bg-gray-50 group-hover:text-gray-900 flex items-center p-2 text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700 group">
-                  <i class="fa-solid fa-user w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 dark:group-hover:text-white"></i>
-      
-                  <span class="ms-3">Profile</span>
                </a>
             </li>
          </ul>

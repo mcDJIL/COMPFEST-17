@@ -72,7 +72,7 @@
 
             data.forEach((item) => {
                 testimonialItem += `
-                    <div class="swiper-slide bg-[#FAFAF5] rounded-[20px] p-4 sm:p-6 w-72 sm:w-80 lg:w-96 h-52 sm:h-60 relative mr-4 sm:mr-6">
+                    <div class="swiper-slide bg-[#FAFAF5] rounded-[20px] p-4 sm:p-6 w-full sm:w-80 lg:w-96 h-52 sm:h-60">
                                 <div class="flex justify-between items-start">
                                     <div class="flex flex-col sm:flex-row sm:gap-6 lg:gap-8 items-start sm:items-center">
                                         <div class="stars-testimoni flex">
@@ -127,7 +127,8 @@
             this.swiperInstance = new Swiper('.testimonial-swiper', {
                 direction: 'horizontal',
                 loop: true, 
-                spaceBetween: 16,
+                slidesPerView: 2,
+                spaceBetween: 10,
                 autoplay: {
                     delay: 3000,
                     reverseDirection: true,
@@ -137,36 +138,14 @@
                     clickable: true,
                 },
                 breakpoints: {
-                    0: {
-                        slidesPerView: 1,
-                        centeredSlides: false,
-                        spaceBetween: 0,
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
                     },
-                    540: {
-                        slidesPerView: 1.3,
-                        centeredSlides: true,
-                        spaceBetween: 16,
-                    },
-                    640: {
-                        slidesPerView: 1.5,
-                        centeredSlides: true,
+                    1080: {
+                        slidesPerView: 3.3,
                         spaceBetween: 20,
                     },
-                    768: {
-                        slidesPerView: 1.8,
-                        centeredSlides: true,
-                        spaceBetween: 24,
-                    },
-                    1024: {
-                        slidesPerView: 2.2,
-                        centeredSlides: false,
-                        spaceBetween: 24,
-                    },
-                    1280: {
-                        slidesPerView: 2.5,
-                        centeredSlides: false,
-                        spaceBetween: 32,
-                    }
                 }
             });
         }
