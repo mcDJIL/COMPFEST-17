@@ -1,12 +1,12 @@
 <div class="w-full pt-20 pb-20">
     <div class="max-w-screen-xl w-full flex mx-auto px-6 sm:px-10">
         <div class="w-full">
-            <div class="">
+            <div class="aos-init aos-animate" data-aos="fade-right">
                 <h2 class="text-3xl text-green-800 sm:mb-3">Features or Services that help you</h2>
                 <h2 class="text-3xl text-green-800">to achieve your healthy life.</h2>
             </div>
     
-            <div class="mt-12 w-full flex flex-wrap justify-between gap-10">
+            <div class="mt-12 w-full flex flex-wrap justify-between gap-10 aos-init aos-animate" data-aos="fade-up">
                 <div class="w-full sm:w-[350px]">
                     <div class="mb-3">
                         <img src="{{ url('assets/images/healthy.png') }}" alt="">

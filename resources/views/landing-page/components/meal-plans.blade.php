@@ -1,14 +1,14 @@
 <section id="meal-plans" class="w-full pt-20 pb-20 bg-[#f1f1f1]">
     <div class="max-w-screen-xl w-full flex mx-auto px-6 sm:px-10">
         <div class="w-full">
-            <div class="">
+            <div class="aos-init aos-animate" data-aos="fade-right">
                 <h2 class="text-3xl text-green-800">Meal Plans</h2>
             </div>
 
-            <div class="mt-10 flex justify-center md:justify-between flex-wrap gap-10">
+            <div class="mt-10 flex justify-center md:justify-between flex-wrap gap-10 aos-init aos-animate" data-aos="zoom-in-up" data-aos-duration="1500">
                 <div class="w-[350px] rounded-[20px] bg-white p-5">
                     <div class="relative">
-                        <img class="plan-image" src="{{ url('assets/images/diet.png') }}" alt="">
+                        <img class="plan-image duration-300 transition-transform hover:scale-105" src="{{ url('assets/images/diet.png') }}" alt="">
 
                         <div class="absolute -bottom-5 left-2/4 transform -translate-x-2/4 bg-[#81C784] text-white px-10 py-2 rounded-[30px] whitespace-nowrap">
                             <p class="plan-price">Rp 30.000,00</p>
@@ -27,7 +27,7 @@
 
                 <div class="w-[350px] rounded-[20px] bg-white p-5">
                     <div class="relative">
-                        <img class="plan-image" src="{{ url('assets/images/royal.png') }}" alt="">
+                        <img class="plan-image duration-300 transition-transform hover:scale-105" src="{{ url('assets/images/royal.png') }}" alt="">
 
                         <div class="absolute -bottom-5 left-2/4 transform -translate-x-2/4 bg-[#FFCC2B] text-white px-10 py-2 rounded-[30px] whitespace-nowrap">
                             <p class="plan-price">Rp 60.000,00</p>
@@ -46,7 +46,7 @@
 
                 <div class="w-[350px] rounded-[20px] bg-white p-5">
                     <div class="relative">
-                        <img class="plan-image" src="{{ url('assets/images/protein.png') }}" alt="">
+                        <img class="plan-image duration-300 transition-transform hover:scale-105" src="{{ url('assets/images/protein.png') }}" alt="">
 
                         <div class="absolute -bottom-5 left-2/4 transform -translate-x-2/4 bg-[#64B5F6] text-white px-10 py-2 rounded-[30px] whitespace-nowrap">
                             <p class="plan-price">Rp 40.000,00</p>

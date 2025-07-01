@@ -1,11 +1,11 @@
     <div class="w-full pt-20 pb-20 overflow-hidden">
         <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-10">
             <div class="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-16">
-                <div class="flex-shrink-0 lg:w-80 xl:w-96">
+                <div class="flex-shrink-0 lg:w-80 xl:w-96 aos-init aos-animate" data-aos="fade-right">
                     <h2 class="text-3xl text-green-800 leading-tight">What Our Customers are Saying</h2>
                     <p class="text-lg sm:text-xl text-[#333333] mt-4">These are the reasons our customers keep coming back</p>
 
-                    <div class="flex justify-between rounded-[20px] bg-[#FAFAF5] mt-8 max-w-[320px] py-6 pr-6 pl-5">
+                    <div class="flex justify-between rounded-[20px] bg-[#FAFAF5] mt-8 max-w-[320px] py-6 pr-6 pl-5 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1500">
                         <div class="flex-shrink-0">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center">
                                 <img class="object-cover" src="{{ url('assets/images/logo2.png') }}" alt="">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
 
-                <div class="flex-1 lg:ml-8">
+                <div class="flex-1 lg:ml-8 aos-init aos-animate" data-aos="fade-left">
                     <div class="swiper testimonial-swiper mt-6 lg:mt-10 relative">
                         <div class="swiper-wrapper !h-[260px] sm:!h-[280px] testimonials-wrapper">
                             

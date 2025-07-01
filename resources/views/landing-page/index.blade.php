@@ -25,6 +25,7 @@
     {{-- Vendors css --}}
     @stack('vendor-style')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         html {
@@ -109,12 +110,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{{ url('assets/js/jquery-3.6.1.min.js') }}"></script>
     <script src="{{ url('assets/js/js.cookie.min.js') }}"></script>
     <script src="{{ url('assets/js/helper-api.js') }}"></script>
     @stack('vendor-script')
 
     <script>
+        AOS.init();
+
         document.documentElement.classList.remove('dark');
 
         function getAuthorization() {

@@ -1,11 +1,11 @@
 <div class="w-full pt-20 pb-20 overflow-hidden">
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-10 flex justify-center">
         <div class="w-full">
-            <div class="text-center mb-8">
+            <div class="text-center mb-8 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
                 <h2 class="text-3xl text-green-800">Submit New Testimonial</h2>
             </div>
 
-            <div class="w-full md:px-32 lg:px-52">
+            <div class="w-full md:px-32 lg:px-52 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1500">
                 <div class="testimonial-error-message hidden"></div>
                 <div class="testimonial-success-message hidden"></div>
 

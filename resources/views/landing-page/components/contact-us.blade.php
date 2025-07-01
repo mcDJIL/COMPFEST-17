@@ -1,12 +1,12 @@
 <section id="contact-us" class="w-full pt-20 pb-20 bg-[#f1f1f1]">
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-10">
         <div class="flex flex-wrap justify-between gap-10 xl:gap-30 w-full">
-            <div class="xl:w-[540px]">
+            <div class="xl:w-[540px] aos-init aos-animate" data-aos="fade-right">
                 <h2 class="text-3xl text-green-800 mb-5">Contact Us</h2>
                 <p class="text-xl text-[#333333]">We'd love to hear from you! Whether you have questions, need support, or want to learn more about our services, our team is here to help.</p>
             </div>
 
-            <div class="flex flex-wrap justify-between gap-5 sm:gap-36 w-full sm:w-auto flex-1 xl:flex-auto">
+            <div class="flex flex-wrap justify-between gap-5 sm:gap-36 w-full sm:w-auto flex-1 xl:flex-auto aos-init aos-animate" data-aos="fade-left">
                 <div class="">
                     <div class="mb-2 w-10 h-10 rounded-[10px] bg-green-800 text-white flex justify-center items-center">
                         <i class="fa-solid fa-phone text-xl"></i>
